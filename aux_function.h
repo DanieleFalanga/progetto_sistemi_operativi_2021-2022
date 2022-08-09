@@ -7,3 +7,4 @@
 #define BUFFER_SIZE 5096
 
 void strtok_aux(char* path, char* delimiter, char** str_buffer);
+float mem_info(char* path_memfile, char** mem_buffer);

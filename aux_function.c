@@ -21,7 +21,7 @@ void strtok_aux(char* path, char* delimiter, char** str_buffer){
             int len = strlen(token);
             str_buffer[count] = malloc(sizeof(char*) * len + 1);
             strcpy(str_buffer[count], token);
-            printf("%s\n", str_buffer[count]);
+            //printf("%s\n", str_buffer[count]);
             count++;
             token = strtok(NULL, delimiter);
         }
@@ -31,4 +31,27 @@ void strtok_aux(char* path, char* delimiter, char** str_buffer){
     fclose(fptr);
     //ritorno il buffer
     return;
+}
+
+float mem_info(char* path_memfile, char** mem_buffer){
+    float mem_percentage;
+    char* buffer[BUFFER_SIZE] = {};
+    
+    //ricavo le informazioni sulla memoria
+    strtok_aux(path_memfile, " ", buffer);
+    //memtotal
+    mem_buffer[0] = malloc(strlen(buffer[1])*sizeof(char*) +1);
+    strcpy(mem_buffer[0], buffer[1]);
+    //memFree
+    mem_buffer[1] = malloc(strlen(buffer[4])*sizeof(char*) +1);
+    strcpy(mem_buffer[1], buffer[4]);
+    //memAvailable
+    mem_buffer[2] = malloc(strlen(buffer[7])*sizeof(char*) +1);
+    strcpy(mem_buffer[2], buffer[7]);
+
+    float mem_total = atoi(mem_buffer[0]);
+    float mem_available = atoi(mem_buffer[1]) + atoi(mem_buffer[2]);
+    float mem_used = mem_total - mem_available;
+    mem_percentage = (mem_used/mem_total) * 100;
+    return mem_percentage;
 }
