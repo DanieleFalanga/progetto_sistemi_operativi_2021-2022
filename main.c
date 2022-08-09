@@ -29,10 +29,12 @@ void strtok_aux(char* path, char* delimiter, char** str_buffer){
             int len = strlen(token);
             str_buffer[count] = malloc(sizeof(char*) * len + 1);
             strcpy(str_buffer[count], token);
-            //printf("%s\n", str_buffer[count]);
+//            printf("%s\n", str_buffer[count]);
             count++;
             token = strtok(NULL, delimiter);
         }
+        for(int i=0; i<3; i++)
+            printf("%s\n", str_buffer[i]);
         
     }
     
@@ -43,8 +45,8 @@ void strtok_aux(char* path, char* delimiter, char** str_buffer){
 
 int main(int argc, char** argv){
     char* str_buffer[BUFFER_SIZE] = {};
-    strtok_aux("/proc/1/stat", " ", str_buffer);
-    printf("%s\n", str_buffer[3]);
+    strtok_aux("/proc/stat", " ", str_buffer);
+    //printf("%s\n", str_buffer[3]);
     return 0;
 }
 
