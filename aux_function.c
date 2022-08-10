@@ -162,17 +162,38 @@ char* take_num_blocked_processes(){
 }
 
 //Flavio
-/*Caluclate percentages of usage of every single core.
+/*Calculate percentages of usage of every single core.
   Insert percentages in a buffer */
-void take_cores_usage_percentages(float* percentages){
-    char* path="/proc/stat";
-    char* delimiter=" ";
-    char* str_buffer[BUFFER_SIZE];
-    strtok_aux(path, delimiter, str_buffer);
-    int counter=0;
-    for(int i=12; i<167; i+=11){
-        float user_time=atof(str_buffer[i]);        //TODO: controllare i valori che stampa
-        percentages[counter]=user_time;             //TODO: mancano da calcolare le percentuali
-    }                                                 
+void take_cores_usage_percentages(float* percentages, float* cpu_last_sum, float* cpu_last_idle){
 
+    char* line_buffer[BUFFER_SIZE];
+    strtok_aux("/proc/stat", "\n", line_buffer);
+
+    //for every core
+    for(int i=1; i< NUM_OF_CORES+1 ; i++){
+        int counter_idle=0;
+        float cpu_current_sum=0;
+        float cpu_current_idle;
+
+        //calculate of the cpu_sum and of the idle
+        char* token=strtok(line_buffer[i], " ");
+        token = strtok(NULL, " ");
+        while(token!=NULL){
+            if(counter_idle==4)
+                cpu_current_idle=atof(token);
+            cpu_current_sum+= (atof(token));
+            counter_idle+=1;
+        }
+        //calculate of the percentage
+        float cpu_sum_delta = cpu_current_sum - cpu_last_sum[i];
+        float cpu_idle_delta = cpu_current_idle - cpu_last_idle[i];
+
+        float cpu_used = cpu_sum_delta - cpu_idle_delta;
+        float cpu_usage_percentage = (cpu_used/cpu_sum_delta)*100;
+        percentages[i]=cpu_usage_percentage;
+
+        //update of the last values with the current values
+        cpu_last_sum[i]=cpu_current_sum;
+        cpu_last_idle[i]=cpu_current_idle;
+    }      
 }
