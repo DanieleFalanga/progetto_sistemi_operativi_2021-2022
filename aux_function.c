@@ -31,12 +31,9 @@ void strtok_aux(char* path, char* delimiter, char** str_buffer){
     return;
 }
 //Daniele
-float take_mem_info(char* path_memfile){
+float take_mem_info(char** buffer){
     float mem_percentage;
-    char* buffer[BUFFER_SIZE] = {};
-    char* mem_buffer[3] = {};
-    //ricavo le informazioni sulla memoria
-    strtok_aux(path_memfile, " ", buffer);
+    char* mem_buffer[3] = {}; 
     //memtotal
     mem_buffer[0] = malloc(strlen(buffer[1])*sizeof(char*) +1);
     strcpy(mem_buffer[0], buffer[1]);
@@ -69,7 +66,7 @@ double take_uptime(char* path_memfile){
 /*Search the first occurrence of "expression" in the file in path, divided in token
   respect to the delimter "delimiter".
   Return the index of the token in which the occurrence is found*/
-int searc_first_occurrence(char* path, char* delimiter, char* expression){
+int search_first_occurrence(char* path, char* delimiter, char* expression){
     regex_t regex;
     int reti;
     char* str_buffer[BUFFER_SIZE];
@@ -103,7 +100,7 @@ int searc_first_occurrence(char* path, char* delimiter, char* expression){
 //Flavio
 /*Search all occurrences of "expression" in the file path.
   Insert the indices of occurrences in "buffer_indices"*/
-void searc_all_occurrences(char* path, char* delimiter, char* expression, int* buffer_indices){
+void search_all_occurrences(char* path, char* delimiter, char* expression, int* buffer_indices){
     regex_t regex;
     int reti;
     char* str_buffer[BUFFER_SIZE];
@@ -174,5 +171,11 @@ void take_cores_usage_percentages(float* percentages){
         float user_time=atof(str_buffer[i]);        //TODO: controllare i valori che stampa
         percentages[counter]=user_time;             //TODO: mancano da calcolare le percentuali
     }                                                 
+
+}
+
+void take_info_system(){
+    char* stat_buffer[BUFFER_SIZE];
+    strtok_aux("/proc/stat", " ", stat_buffer);
 
 }

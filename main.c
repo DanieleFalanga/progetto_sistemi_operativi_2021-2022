@@ -2,6 +2,7 @@
 
 
 int main(int argc, char** argv){
+
     char* str_buffer[BUFFER_SIZE] = {};
     strtok_aux("/proc/stat", " ", str_buffer);
         
@@ -22,6 +23,7 @@ int main(int argc, char** argv){
     searc_all_occurrences("/proc/stat", "\n", "cpu", buffer_indices);
     for(int i=0; i<16; i++)
         printf("%d\n", buffer_indices[i]);
+    
 
     return 0;
 }

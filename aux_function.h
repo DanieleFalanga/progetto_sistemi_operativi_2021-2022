@@ -11,8 +11,8 @@
 #define UPTIME (take_uptime("/proc/uptime"))
 
 void strtok_aux(char* path, char* delimiter, char** str_buffer);
-float take_mem_info(char* path_memfile);
-double take_uptime(char* path_uptime);
+float take_mem_info(char** buffer);
+double take_uptime(char* path);
 int take_num_of_cores();
 char* take_num_running_processes();     //return a string (not a number)
 char* take_num_blocked_processes();     //return a string (not a number)
