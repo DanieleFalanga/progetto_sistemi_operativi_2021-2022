@@ -56,6 +56,7 @@ float take_mem_info(char* path_memfile){
 }
 
 //Daniele
+/*Uptime in seconds*/
 double take_uptime(char* path_memfile){
     double uptime;
     char* uptime_buffer[2] = {};
@@ -65,17 +66,17 @@ double take_uptime(char* path_memfile){
 }
 
 //Flavio
-int take_num_of_cores(){
+/*Search the first occurrence of "expression" in the file in path, divided in token
+  respect to the delimter "delimiter".
+  Return the index of the token in which the occurrence is found*/
+int searc_first_occurrence(char* path, char* delimiter, char* expression){
     regex_t regex;
     int reti;
-
-    char* path="/proc/stat";
-    char* delimiter="\n";
     char* str_buffer[BUFFER_SIZE];
     strtok_aux(path, delimiter, str_buffer);
     int counter=0;
     while(1){
-        reti=regcomp(&regex, "intr ", REG_EXTENDED);
+        reti=regcomp(&regex, expression, REG_EXTENDED);
         if (reti) {
             fprintf(stderr, "Could not compile regex\n");
             exit(1);
@@ -96,5 +97,82 @@ int take_num_of_cores(){
         }
         regfree(&regex);
     }
-    return counter-1;
+    return counter;
+}
+
+//Flavio
+/*Search all occurrences of "expression" in the file path.
+  Insert the indices of occurrences in "buffer_indices"*/
+void searc_all_occurrences(char* path, char* delimiter, char* expression, int* buffer_indices){
+    regex_t regex;
+    int reti;
+    char* str_buffer[BUFFER_SIZE];
+    strtok_aux(path, delimiter, str_buffer);
+    int i=0;
+    int counter=0;
+    while(str_buffer[counter]!=NULL){
+        reti=regcomp(&regex, expression, REG_EXTENDED);
+        if (reti) {
+            fprintf(stderr, "Could not compile regex\n");
+            exit(1);
+        }
+        reti = regexec(&regex, str_buffer[counter], 0, NULL, 0);
+        if (!reti) {
+            //puts("Match");
+            buffer_indices[i]=counter;
+            counter++;
+            i++;
+        }
+        else if(reti==REG_NOMATCH){
+            //puts("No match");
+            counter++;
+        }
+        else {
+            regerror(reti, &regex, str_buffer[counter], sizeof(str_buffer[counter]));
+            fprintf(stderr, "Regex match failed: %s\n", str_buffer[counter]);
+            exit(1);
+        }
+        regfree(&regex);
+    }
+}
+
+
+//Flavio
+int take_num_of_cores(){
+    return searc_first_occurrence("/proc/stat", "\n", "intr ") - 1;
+}
+
+//Flavio
+char* take_num_running_processes(){
+    char* path="/proc/stat";
+    char* str_buffer[BUFFER_SIZE];
+    char* delimiter=" ";
+    strtok_aux(path, delimiter, str_buffer);
+
+    return str_buffer[1292];
+}
+//Flavio
+char* take_num_blocked_processes(){
+    char* path="/proc/stat";
+    char* str_buffer[BUFFER_SIZE];
+    char* delimiter=" ";
+    strtok_aux(path, delimiter, str_buffer);
+
+    return str_buffer[1294];
+}
+
+//Flavio
+/*Caluclate percentages of usage of every single core.
+  Insert percentages in a buffer */
+void take_cores_usage_percentages(float* percentages){
+    char* path="/proc/stat";
+    char* delimiter=" ";
+    char* str_buffer[BUFFER_SIZE];
+    strtok_aux(path, delimiter, str_buffer);
+    int counter=0;
+    for(int i=12; i<167; i+=11){
+        float user_time=atof(str_buffer[i]);        //TODO: controllare i valori che stampa
+        percentages[counter]=user_time;             //TODO: mancano da calcolare le percentuali
+    }                                                 
+
 }
