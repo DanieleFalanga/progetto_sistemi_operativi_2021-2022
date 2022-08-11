@@ -77,13 +77,17 @@ void take_group_info(char** group_buffer){
 }
 
 
+float take_cpu_usage_process(char* buffer_stat){
+    float utime=atoi(buffer_stat[13]);
+    //devo prendere stime,...
+}
 
+
+
+
+//General function that takes all processes informations
 void take_processes_info(){
-    
-
-    
     //printf("%s\n", group_buffer[search_group_id("/proc/1152/status")]);
-    
 
     for (int num_pid = 1; num_pid<100000; num_pid++){
         //inizializzo i buffer
@@ -115,7 +119,15 @@ void take_processes_info(){
         strcat(status, "/status");
 
         //ti prendi i buffer dei file con strtok_aux
-
+        //per stat, stat, va bene strtok
+        //per status no
+        //per cmdline non serve
+        
+        char* buffer_stat[BUFFER_SIZE];
+        char* buffer_statm[BUFFER_SIZE];
+        
+        strtok_aux(stat, " ", buffer_stat);
+        
         //chiami le relative funzioni
         break;
         

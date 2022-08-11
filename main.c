@@ -44,47 +44,6 @@ int main(int argc, char** argv){
 
 */
 
-/////////////////////////////////////////////////       da fixare
-    /*
-    float percentages[NUM_OF_CORES];
-    float cpu_last_sum[NUM_OF_CORES];
-    float cpu_last_idle[NUM_OF_CORES];
-    char* line_buffer[BUFFER_SIZE];
-    strtok_aux("/proc/stat", "\n", line_buffer);
-    
-    //for every core
-    for(int i=1; i< NUM_OF_CORES+1 ; i++){
-        int counter_idle=1;
-        float cpu_current_sum=0;
-        float cpu_current_idle=0;
-
-        //calculate of the cpu_sum and of cpu_idle
-        char* token=strtok(line_buffer[i], " ");
-        printf("token inutile.............%s\n", token);
-        token = strtok(NULL, " ");
-        while(token!=NULL){
-            printf("%s\n", token);
-            if(counter_idle==4)
-                cpu_current_idle=atof(token);
-            cpu_current_sum += (atof(token));
-            counter_idle+=1;
-            token = strtok(NULL, " ");
-
-        }
-        cpu_last_sum[i-1]=cpu_current_sum;
-        cpu_last_idle[i-1]=cpu_current_idle;
-    }
-    while(1){
-        sleep(1);
-        take_cores_usage_percentages(percentages, cpu_last_sum, cpu_last_idle);
-    }
-    //for(int i=0; i<NUM_OF_CORES; i++){
-    //    printf("percentage core %d:\t%f\n", i, percentages[i]);
-    //}
-
-    */
-    take_processes_info();
-    
     
     //take_info_system();
 

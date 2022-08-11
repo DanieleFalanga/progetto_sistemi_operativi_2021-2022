@@ -159,6 +159,35 @@ char* take_num_blocked_processes(){
 }
 
 //Flavio
+void take_first_cores_usage_percentages(float* percentages, float* cpu_last_sum, float* cpu_last_idle){
+    char* line_buffer[BUFFER_SIZE];
+    strtok_aux("/proc/stat", "\n", line_buffer);
+    
+    //for every core
+    for(int i=1; i< NUM_OF_CORES+1 ; i++){
+        int counter_idle=1;
+        float cpu_current_sum=0;
+        float cpu_current_idle=0;
+
+        //calculate of the cpu_sum and of cpu_idle
+        char* token=strtok(line_buffer[i], " ");
+//        printf("token inutile.............%s\n", token);
+        token = strtok(NULL, " ");
+        while(token!=NULL){
+            printf("%s\n", token);
+            if(counter_idle==4)
+                cpu_current_idle=atof(token);
+            cpu_current_sum += (atof(token));
+            counter_idle+=1;
+            token = strtok(NULL, " ");
+
+        }
+        cpu_last_sum[i-1]=cpu_current_sum;
+        cpu_last_idle[i-1]=cpu_current_idle;
+    }
+}
+
+//Flavio
 /*Calculate percentages of usage of every single core.
   Insert percentages in a buffer */
 void take_cores_usage_percentages(float* percentages, float* cpu_last_sum, float* cpu_last_idle){
@@ -203,35 +232,9 @@ void take_cores_usage_percentages(float* percentages, float* cpu_last_sum, float
     }      
 }
 
-void take_first_cores_usage_percentages(float* percentages, float* cpu_last_sum, float* cpu_last_idle){
-    char* line_buffer[BUFFER_SIZE];
-    strtok_aux("/proc/stat", "\n", line_buffer);
-    
-    //for every core
-    for(int i=1; i< NUM_OF_CORES+1 ; i++){
-        int counter_idle=1;
-        float cpu_current_sum=0;
-        float cpu_current_idle=0;
-
-        //calculate of the cpu_sum and of cpu_idle
-        char* token=strtok(line_buffer[i], " ");
-        printf("token inutile.............%s\n", token);
-        token = strtok(NULL, " ");
-        while(token!=NULL){
-            printf("%s\n", token);
-            if(counter_idle==4)
-                cpu_current_idle=atof(token);
-            cpu_current_sum += (atof(token));
-            counter_idle+=1;
-            token = strtok(NULL, " ");
-
-        }
-        cpu_last_sum[i-1]=cpu_current_sum;
-        cpu_last_idle[i-1]=cpu_current_idle;
-    }
-}
 
 
+//General function that takes all system informations
 
 void take_info_system(){
     float percentages[NUM_OF_CORES];
