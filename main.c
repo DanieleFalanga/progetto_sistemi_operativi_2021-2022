@@ -2,6 +2,11 @@
 
 
 int main(int argc, char** argv){
+    //informazioni statiche e buffer
+    char* group_buffer[65534];
+    take_group_info(group_buffer);
+    
+    
     /*
     char* str_buffer[BUFFER_SIZE] = {};
     strtok_aux("/proc/stat", " ", str_buffer);
@@ -71,6 +76,7 @@ int main(int argc, char** argv){
 
     */
     take_processes_info();
+    
     return 0;
 }
 

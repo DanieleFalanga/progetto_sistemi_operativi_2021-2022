@@ -1,12 +1,21 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-# GNU Make 4.3
-# Built for x86_64-pc-linux-gnu
-# Copyright (C) 1988-2020 Free Software Foundation, Inc.
-# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
-# This is free software: you are free to change and redistribute it.
-# There is NO WARRANTY, to the extent permitted by law.
+make: *** No rule to make target 'all'.  Stop.
 
-# Make data base, printed on Thu Aug 11 14:54:42 2022
+# GNU Make 4.3
+ 
+# Built for x86_64-pc-linux-gnu
+ 
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+ 
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+ 
+# This is free software: you are free to change and redistribute it.
+ 
+# There is NO WARRANTY, to the extent permitted by law.
+ 
+
+ 
+# Make data base, printed on Thu Aug 11 17:37:33 2022
 
 # Variables
 
@@ -55,6 +64,7 @@ XAUTHORITY = /run/user/1000/gdm/Xauthority
 # default
 .LOADED := 
 # default
+ 
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # makefile
 MAKEFLAGS = pqrR
@@ -79,13 +89,14 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 1711
+VSCODE_PID = 2371
+ 
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/Dans-PC:@/tmp/.ICE-unix/1191,unix/Dans-PC:/tmp/.ICE-unix/1191
+SESSION_MANAGER = local/Dans-PC:@/tmp/.ICE-unix/1183,unix/Dans-PC:/tmp/.ICE-unix/1183
 # automatic
 *F = $(notdir $*)
 # environment
@@ -103,6 +114,7 @@ SHELL = /bin/sh
 # default
 MAKECMDGOALS := all
 # environment
+ 
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 # environment
 SHLVL = 1
@@ -119,7 +131,7 @@ MOTD_SHOWN = pam
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = a5a1ff7535774b06a97ca0727fe56001
+INVOCATION_ID = 2419c95516c748f498af48219455b464
 # environment
 USERNAME = dans
 # automatic
@@ -141,7 +153,7 @@ GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/visual-studio-code.desktop
 # makefile
 .DEFAULT_GOAL := similtop
 # environment
-SYSTEMD_EXEC_PID = 1206
+SYSTEMD_EXEC_PID = 1198
 # environment
 DISPLAY = :1
 # environment
@@ -149,17 +161,18 @@ USER = dans
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 1090
+MANAGERPID = 1082
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 1694
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2354
 # environment
 _ = /usr/bin/make
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # makefile (from 'Makefile', line 2)
 CFLAGS = -I.
+ 
 # environment
-JOURNAL_STREAM = 8:21247
+JOURNAL_STREAM = 8:22315
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -199,15 +212,16 @@ GDMSESSION = gnome
 
 # Directories
 
-# . (device 39, inode 513863): 15 files, no impossibilities.
+# . (device 41, inode 513863): 15 files, no impossibilities.
 
 # 15 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 %.o: %.c aux_function.h proc_function.h
+ 
 #  recipe to execute (from 'Makefile', line 7):
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -lm -c -o $@ $< $(CFLAGS)
 
 # 1 implicit rules, 0 (0.0%) terminal.
 # Files
@@ -215,7 +229,7 @@ GDMSESSION = gnome
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-10 17:20:28.684446109
+#  Last modified 2022-08-11 17:37:09.702132613
 #  File has been updated.
 #  Successfully updated.
 
@@ -243,7 +257,7 @@ similtop: main.o aux_function.o proc_function.o
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 10):
-	$(CC) -o $@ $^ $(CFLAGS)
+	$(CC) -lm -o $@ $^ $(CFLAGS)
 
 # Not a target:
 main.o:
@@ -265,14 +279,13 @@ proc_function.o:
 
 # No general ('VPATH' variable) search path.
 
+ 
 # strcache buffers: 1 (0) / strings = 22 / storage = 215 B / avg = 9 B
 # current buf: size = 8162 B / used = 215 B / count = 22 / avg = 9 B
 
 # strcache performance: lookups = 33 / hit rate = 33%
 # hash-table stats:
 # Load=22/8192=0%, Rehash=0, Collisions=0/33=0%
-# Finished Make data base on Thu Aug 11 14:54:42 2022
+# Finished Make data base on Thu Aug 11 17:37:33 2022
 
  
-make: *** No rule to make target 'all'.  Stop.
-

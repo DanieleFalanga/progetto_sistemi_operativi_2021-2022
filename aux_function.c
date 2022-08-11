@@ -201,5 +201,5 @@ void take_info_system(){
     strtok_aux("/proc/stat", " ", stat_buffer);
     char* mem_buffer[3];
     strtok_aux("/proc/meminfo", " ", mem_buffer);
-
+    
 }

@@ -1,9 +1,38 @@
 #include "proc_function.h"
 
 
-/*
-Funzione ausiliaria per prendere la lista degli ID proprietari dei processi
 
+int search_group_id(char* path){
+    FILE* fptr = fopen(path, "r");
+
+    char string[2048];
+
+    int row = 1; 
+    int group_id;
+    while(fgets(string, 2048, fptr) != NULL){
+        if (row == 9){
+            char* token = strtok(string, "\t");
+            int column = 0; 
+            while(token != NULL){
+                    if (column == 1){
+                    group_id = atoi(token);
+                    break;
+                }
+                column++;
+                token = strtok(NULL, "\t");
+            }
+            break;
+        }
+        row++;
+    }
+    fclose(fptr);
+    //printf("%d\n", group_id)    
+    return group_id;
+}
+
+/*
+Auxiliary function that return list of group info in /etc/group, list is a array where cell number correspond to ID group number 
+and the corresponding strings the ID group name
 Daniele
 */
 void take_group_info(char** group_buffer){
@@ -50,10 +79,47 @@ void take_group_info(char** group_buffer){
 
 
 void take_processes_info(){
-    char* group_buffer[65534];
-    take_group_info(group_buffer);
-    printf("%s\n", group_buffer[0]);
-    printf("%s\n", group_buffer[1000]);
-    printf("%s\n", group_buffer[981]);
     
+
+    
+    //printf("%s\n", group_buffer[search_group_id("/proc/1152/status")]);
+    
+
+    for (int num_pid = 1; num_pid<100000; num_pid++){
+        //inizializzo i buffer
+        char stat[100] = "/proc/";
+        char statm[100] = "/proc/";
+        char cmdline[100] = "/proc/";
+        char status[100] = "/proc/";
+        
+        //mi prendo la stringa del pid
+        char pid[(int)((ceil(log10(num_pid))+1)*sizeof(char))];
+        sprintf(pid, "%d", num_pid);
+        
+        //faccio la prima strcat per un file
+        strcat(stat, pid);
+        strcat(stat, "/stat");
+        
+        //se il file esiste continuo, altrimenti passo all'iterazione successiva
+        if(fopen(stat, "r") == NULL)
+            continue; 
+        
+        //faccio le altre strcat
+        strcat(stat, pid);
+        strcat(stat, "/stat");
+        strcat(statm, pid);
+        strcat(statm, "/statm");
+        strcat(cmdline, pid);
+        strcat(cmdline, "/cmdline");
+        strcat(status, pid);
+        strcat(status, "/status");
+
+        //ti prendi i buffer dei file con strtok_aux
+
+        //chiami le relative funzioni
+        break;
+        
+    } 
+
 }
+
