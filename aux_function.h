@@ -19,5 +19,8 @@ char* take_num_blocked_processes();     //return a string (not a number)
 void take_cores_usage_percentages();
 int searc_first_occurrence(char* path, char* delimiter, char* expression);
 void searc_all_occurrences(char* path, char* delimiter, char* expression, int* buffer_indices);
+void take_cores_usage_percentages(float* percentages, float* cpu_last_sum, float* cpu_last_idle);
+void take_info_system();
+
 
 

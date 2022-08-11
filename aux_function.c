@@ -136,7 +136,7 @@ void search_all_occurrences(char* path, char* delimiter, char* expression, int* 
 
 //Flavio
 int take_num_of_cores(){
-    return searc_first_occurrence("/proc/stat", "\n", "intr ") - 1;
+    return search_first_occurrence("/proc/stat", "\n", "intr ") - 1;
 }
 
 //Flavio
@@ -179,13 +179,15 @@ void take_cores_usage_percentages(float* percentages, float* cpu_last_sum, float
                 cpu_current_idle=atof(token);
             cpu_current_sum+= (atof(token));
             counter_idle+=1;
+            token = strtok(NULL, " ");
+
         }
         //calculate of the percentage
         float cpu_sum_delta = cpu_current_sum - cpu_last_sum[i];
         float cpu_idle_delta = cpu_current_idle - cpu_last_idle[i];
 
         float cpu_used = cpu_sum_delta - cpu_idle_delta;
-        float cpu_usage_percentage = (cpu_used/cpu_sum_delta)*100;
+        float cpu_usage_percentage = (float) (cpu_used/cpu_sum_delta);
         percentages[i]=cpu_usage_percentage;
 
         //update of the last values with the current values
@@ -199,4 +201,5 @@ void take_info_system(){
     strtok_aux("/proc/stat", " ", stat_buffer);
     char* mem_buffer[3];
     strtok_aux("/proc/meminfo", " ", mem_buffer);
+
 }
