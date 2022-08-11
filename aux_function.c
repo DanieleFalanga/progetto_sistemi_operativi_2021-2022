@@ -48,7 +48,7 @@ float take_mem_info(char** buffer){
     float mem_available = atoi(mem_buffer[1]) + atoi(mem_buffer[2]);
     float mem_used = mem_total - mem_available;
     mem_percentage = (mem_used/mem_total) * 100;
-    
+    printf("eccomi\n");
     return mem_percentage;
 }
 
@@ -167,39 +167,87 @@ void take_cores_usage_percentages(float* percentages, float* cpu_last_sum, float
 
     //for every core
     for(int i=1; i< NUM_OF_CORES+1 ; i++){
-        int counter_idle=0;
+        int counter_idle=1;
         float cpu_current_sum=0;
-        float cpu_current_idle;
+        float cpu_current_idle=0;
 
-        //calculate of the cpu_sum and of the idle
+        //calculate of the cpu_sum and cpu_idle
         char* token=strtok(line_buffer[i], " ");
         token = strtok(NULL, " ");
         while(token!=NULL){
             if(counter_idle==4)
                 cpu_current_idle=atof(token);
-            cpu_current_sum+= (atof(token));
+            cpu_current_sum += (atof(token));
             counter_idle+=1;
             token = strtok(NULL, " ");
 
         }
+        //printf("sum: %f\n", cpu_current_sum);
+        //printf("idle: %f\n", cpu_current_idle);
         //calculate of the percentage
-        float cpu_sum_delta = cpu_current_sum - cpu_last_sum[i];
-        float cpu_idle_delta = cpu_current_idle - cpu_last_idle[i];
+        float cpu_sum_delta = cpu_current_sum - cpu_last_sum[i-1];   //       printf("sum delta: %f\n", cpu_sum_delta);
 
-        float cpu_used = cpu_sum_delta - cpu_idle_delta;
-        float cpu_usage_percentage = (float) (cpu_used/cpu_sum_delta);
-        percentages[i]=cpu_usage_percentage;
+        float cpu_idle_delta = cpu_current_idle - cpu_last_idle[i-1];  //         printf("idle delta: %f\n", cpu_idle_delta);
+
+
+        float cpu_used = cpu_sum_delta - cpu_idle_delta;   //     printf("used: %f\n", cpu_used);
+
+        float cpu_usage_percentage = (float) (cpu_used/cpu_sum_delta); //       printf("usage: %f\n\n\n", cpu_usage_percentage);
+
+        percentages[i-1]=(cpu_usage_percentage*100);
+        //printf("percentage core %d:\t%.2f\n\n\n", i-1, percentages[i-1]);
 
         //update of the last values with the current values
-        cpu_last_sum[i]=cpu_current_sum;
-        cpu_last_idle[i]=cpu_current_idle;
+        cpu_last_sum[i-1]=cpu_current_sum;
+        cpu_last_idle[i-1]=cpu_current_idle;
     }      
 }
 
+void take_first_cores_usage_percentages(float* percentages, float* cpu_last_sum, float* cpu_last_idle){
+    char* line_buffer[BUFFER_SIZE];
+    strtok_aux("/proc/stat", "\n", line_buffer);
+    
+    //for every core
+    for(int i=1; i< NUM_OF_CORES+1 ; i++){
+        int counter_idle=1;
+        float cpu_current_sum=0;
+        float cpu_current_idle=0;
+
+        //calculate of the cpu_sum and of cpu_idle
+        char* token=strtok(line_buffer[i], " ");
+        printf("token inutile.............%s\n", token);
+        token = strtok(NULL, " ");
+        while(token!=NULL){
+            printf("%s\n", token);
+            if(counter_idle==4)
+                cpu_current_idle=atof(token);
+            cpu_current_sum += (atof(token));
+            counter_idle+=1;
+            token = strtok(NULL, " ");
+
+        }
+        cpu_last_sum[i-1]=cpu_current_sum;
+        cpu_last_idle[i-1]=cpu_current_idle;
+    }
+}
+
+
+
 void take_info_system(){
+    float percentages[NUM_OF_CORES];
+    float cpu_last_sum[NUM_OF_CORES];
+    float cpu_last_idle[NUM_OF_CORES];
     char* stat_buffer[BUFFER_SIZE];
     strtok_aux("/proc/stat", " ", stat_buffer);
     char* mem_buffer[3];
     strtok_aux("/proc/meminfo", " ", mem_buffer);
+    float p=take_mem_info(mem_buffer);
+    printf("%.2f\n", p);
+
+    take_cores_usage_percentages(percentages, cpu_last_sum, cpu_last_idle);
+
+
+
     
+
 }
