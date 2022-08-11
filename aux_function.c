@@ -136,7 +136,7 @@ void search_all_occurrences(char* path, char* delimiter, char* expression, int* 
 
 //Flavio
 int take_num_of_cores(){
-    return searc_first_occurrence("/proc/stat", "\n", "intr ") - 1;
+    return search_first_occurrence("/proc/stat", "\n", "intr ") - 1;
 }
 
 //Flavio

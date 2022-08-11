@@ -17,7 +17,7 @@ int take_num_of_cores();
 char* take_num_running_processes();     //return a string (not a number)
 char* take_num_blocked_processes();     //return a string (not a number)
 void take_cores_usage_percentages();
-int searc_first_occurrence(char* path, char* delimiter, char* expression);
-void searc_all_occurrences(char* path, char* delimiter, char* expression, int* buffer_indices);
+int search_first_occurrence(char* path, char* delimiter, char* expression);
+void search_all_occurrences(char* path, char* delimiter, char* expression, int* buffer_indices);
 
 
