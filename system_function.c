@@ -1,4 +1,4 @@
-#include "aux_function.h"
+#include "system_function.h"
 
 //Daniele
 void strtok_aux(char* path, char* delimiter, char** str_buffer){

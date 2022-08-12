@@ -1,4 +1,4 @@
-#include "aux_function.h"
+#include "system_function.h"
 
 char* take_priority(char** buffer);
 char* take_nice_value(char** buffer);

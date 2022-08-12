@@ -1,8 +1,9 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory '/home/dans/Documents/university/progetto_sistemi_operativi_2021-2022'
 gcc -lm -c -o main.o main.c -I.
-gcc -lm -c -o aux_function.o aux_function.c -I.
+gcc -lm -c -o system_function.o system_function.c -I.
+ 
 gcc -lm -c -o proc_function.o proc_function.c -I.
-gcc -lm -o similtop main.o aux_function.o proc_function.o -I.
+gcc -lm -o similtop main.o system_function.o proc_function.o -I.
 make: Leaving directory '/home/dans/Documents/university/progetto_sistemi_operativi_2021-2022'
  
