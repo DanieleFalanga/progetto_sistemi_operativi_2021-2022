@@ -44,9 +44,13 @@ int main(int argc, char** argv){
 */
 
     
-    take_info_system();
+/*    take_info_system();
     printf("info system:\n");
-    take_processes_info(group_buffer);
+*/    take_processes_info(group_buffer);
+
+
+
     return 0;
+
 }
 
