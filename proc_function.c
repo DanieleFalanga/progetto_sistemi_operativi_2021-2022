@@ -112,12 +112,19 @@ void take_group_info(char** group_buffer){
     }
 }
 
-/*
-float take_cpu_usage_process(char* buffer_stat){
-    float utime=atoi(buffer_stat[13]);
-    //devo prendere stime,...
+
+float take_cpu_usage_process(char** buffer_stat){
+    float utime=atof(buffer_stat[13]);
+    float stime=atof(buffer_stat[14]);
+
+    float starttime=atof(buffer_stat[21])*CLOCKS_PER_SEC;
+
+    float cpu_usage= (utime+stime)/(UPTIME-starttime)*100;
+    return cpu_usage;
+
+
 }
-*/
+
 
 
 
@@ -173,7 +180,10 @@ void take_processes_info(char** group_buffer){
         int time = take_time(buffer_stat);
         char cmdline_string[70];
         char* command_line = take_cmdline(cmdline, cmdline_string);
+        float cpu_usage=take_cpu_usage_process(buffer_stat);
                 
+        printf("cpu usage:  %f\n", cpu_usage);
+        break;
         printf("%s\n", pid);
         printf("%s\n", user);
         printf("%s\n", priority);
