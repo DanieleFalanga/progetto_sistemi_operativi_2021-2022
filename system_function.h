@@ -6,6 +6,7 @@
 #include <regex.h>
 #include <math.h>
 #include <time.h>
+#include <sys/times.h>
 
 #define BUFFER_SIZE 5096
 #define NUM_OF_CORES (take_num_of_cores())

@@ -113,13 +113,13 @@ void take_group_info(char** group_buffer){
 }
 
 
-float take_cpu_usage_process(char** buffer_stat){
-    float utime=atof(buffer_stat[13]);
-    float stime=atof(buffer_stat[14]);
+double take_cpu_usage_process(char** buffer_stat){
+    double utime=atof(buffer_stat[13])/sysconf(_SC_CLK_TCK);
+    double stime=atof(buffer_stat[14])/sysconf(_SC_CLK_TCK);
+    //printf("%f\n", stime);
 
-    float starttime=atof(buffer_stat[21])*CLOCKS_PER_SEC;
-
-    float cpu_usage= (utime+stime)/(UPTIME-starttime)*100;
+    double starttime=atof(buffer_stat[21])/sysconf(_SC_CLK_TCK);
+    double cpu_usage= (utime+stime)*100/(UPTIME-starttime);
     return cpu_usage;
 
 
@@ -148,6 +148,12 @@ void take_processes_info(char** group_buffer){
         if(fopen(stat, "r") == NULL)
             continue; 
         
+        char* buffer_stat[BUFFER_SIZE];
+        strtok_aux(stat, " ", buffer_stat);
+        
+        if (strcmp(buffer_stat[0], buffer_stat[5]) != 0)
+            continue;
+
         //initialize others paths and do other strcat  
         char statm[100] = "/proc/";
         char cmdline[100] = "/proc/";
@@ -163,10 +169,8 @@ void take_processes_info(char** group_buffer){
         //take buffers with strtok_aux
         //Not necessary for cmdline and status
         
-        char* buffer_stat[BUFFER_SIZE];
         char* buffer_statm[BUFFER_SIZE];
         
-        strtok_aux(stat, " ", buffer_stat);
         strtok_aux(statm, " ", buffer_statm);
         
         //take all necessary parameters with the appropriate functions
@@ -180,11 +184,12 @@ void take_processes_info(char** group_buffer){
         int time = take_time(buffer_stat);
         char cmdline_string[70];
         char* command_line = take_cmdline(cmdline, cmdline_string);
-        float cpu_usage=take_cpu_usage_process(buffer_stat);
+        double cpu_usage=take_cpu_usage_process(buffer_stat);
                 
-        printf("cpu usage:  %f\n", cpu_usage);
-        break;
+        printf("cpu usage:  %lf\n", cpu_usage);
+        
         printf("%s\n", pid);
+        /*
         printf("%s\n", user);
         printf("%s\n", priority);
         printf("%s\n", nice_value); //errato
@@ -194,7 +199,7 @@ void take_processes_info(char** group_buffer){
         printf("%s\n", status_string);
         printf("%d\n", time); //errato
         printf("%s\n", command_line);
-
+        */
         
     } 
 
