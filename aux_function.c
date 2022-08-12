@@ -48,7 +48,7 @@ float take_mem_info(char** buffer){
     float mem_available = atoi(mem_buffer[1]) + atoi(mem_buffer[2]);
     float mem_used = mem_total - mem_available;
     mem_percentage = (mem_used/mem_total) * 100;
-    printf("eccomi\n");
+    //printf("eccomi\n");
     return mem_percentage;
 }
 

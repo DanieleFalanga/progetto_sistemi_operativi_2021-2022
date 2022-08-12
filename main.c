@@ -4,9 +4,8 @@
 int main(int argc, char** argv){
     //informazioni statiche e buffer
     char* group_buffer[65534];
-    take_group_info(group_buffer);
-    
-    
+    take_group_info(group_buffer);    
+
     /*
     char* str_buffer[BUFFER_SIZE] = {};
     strtok_aux("/proc/stat", " ", str_buffer);
@@ -45,9 +44,9 @@ int main(int argc, char** argv){
 */
 
     
-    //take_info_system();
-
-    //take_processes_info();
+    take_info_system();
+    printf("info system:\n");
+    take_processes_info(group_buffer);
     return 0;
 }
 

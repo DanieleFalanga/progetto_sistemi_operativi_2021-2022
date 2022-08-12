@@ -2,20 +2,13 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target 'all'.  Stop.
 
 # GNU Make 4.3
- 
 # Built for x86_64-pc-linux-gnu
- 
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
- 
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
- 
 # This is free software: you are free to change and redistribute it.
- 
 # There is NO WARRANTY, to the extent permitted by law.
- 
 
- 
-# Make data base, printed on Thu Aug 11 17:37:33 2022
+# Make data base, printed on Fri Aug 12 12:54:15 2022
 
 # Variables
 
@@ -64,7 +57,6 @@ XAUTHORITY = /run/user/1000/gdm/Xauthority
 # default
 .LOADED := 
 # default
- 
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # makefile
 MAKEFLAGS = pqrR
@@ -89,14 +81,13 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 2371
- 
+VSCODE_PID = 1710
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/Dans-PC:@/tmp/.ICE-unix/1183,unix/Dans-PC:/tmp/.ICE-unix/1183
+SESSION_MANAGER = local/Dans-PC:@/tmp/.ICE-unix/1187,unix/Dans-PC:/tmp/.ICE-unix/1187
 # automatic
 *F = $(notdir $*)
 # environment
@@ -114,7 +105,6 @@ SHELL = /bin/sh
 # default
 MAKECMDGOALS := all
 # environment
- 
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 # environment
 SHLVL = 1
@@ -131,7 +121,7 @@ MOTD_SHOWN = pam
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = 2419c95516c748f498af48219455b464
+INVOCATION_ID = 8890341681b1436081096999827b0195
 # environment
 USERNAME = dans
 # automatic
@@ -153,7 +143,7 @@ GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/visual-studio-code.desktop
 # makefile
 .DEFAULT_GOAL := similtop
 # environment
-SYSTEMD_EXEC_PID = 1198
+SYSTEMD_EXEC_PID = 1202
 # environment
 DISPLAY = :1
 # environment
@@ -161,18 +151,17 @@ USER = dans
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 1082
+MANAGERPID = 1084
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 2354
+GIO_LAUNCHED_DESKTOP_FILE_PID = 1693
 # environment
 _ = /usr/bin/make
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # makefile (from 'Makefile', line 2)
 CFLAGS = -I.
- 
 # environment
-JOURNAL_STREAM = 8:22315
+JOURNAL_STREAM = 8:23179
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -212,14 +201,13 @@ GDMSESSION = gnome
 
 # Directories
 
-# . (device 41, inode 513863): 15 files, no impossibilities.
+# . (device 39, inode 513863): 15 files, no impossibilities.
 
 # 15 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 %.o: %.c aux_function.h proc_function.h
- 
 #  recipe to execute (from 'Makefile', line 7):
 	$(CC) -lm -c -o $@ $< $(CFLAGS)
 
@@ -279,13 +267,12 @@ proc_function.o:
 
 # No general ('VPATH' variable) search path.
 
- 
 # strcache buffers: 1 (0) / strings = 22 / storage = 215 B / avg = 9 B
 # current buf: size = 8162 B / used = 215 B / count = 22 / avg = 9 B
 
 # strcache performance: lookups = 33 / hit rate = 33%
 # hash-table stats:
 # Load=22/8192=0%, Rehash=0, Collisions=0/33=0%
-# Finished Make data base on Thu Aug 11 17:37:33 2022
+# Finished Make data base on Fri Aug 12 12:54:15 2022
 
  

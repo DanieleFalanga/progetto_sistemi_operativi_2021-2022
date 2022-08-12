@@ -1,6 +1,42 @@
 #include "proc_function.h"
 
+char* take_priority(char** buffer){
+    return buffer[17];
+}
 
+char* take_nice_value(char** buffer){
+    return buffer[19];
+}
+
+char* take_virt(char** buffer){
+    return buffer[22];
+}
+
+char* take_status(char** buffer){
+    return buffer[2];
+}
+
+int take_time(char** buffer){
+    int utime = atoi(buffer[14]);
+    int stime = atoi(buffer[15]);
+    int time = utime + stime;
+    return time;
+}
+
+char* take_res(char** buffer){
+    return buffer[1];
+}
+
+char* take_share(char** buffer){
+    return buffer[2];
+}
+
+char* take_cmdline(char* path, char* string){
+    FILE* fptr = fopen(path, "r");
+    fgets(string, 70, fptr);
+    fclose(fptr);
+    return string;
+}
 
 int search_group_id(char* path){
     FILE* fptr = fopen(path, "r");
@@ -76,60 +112,79 @@ void take_group_info(char** group_buffer){
     }
 }
 
-
+/*
 float take_cpu_usage_process(char* buffer_stat){
     float utime=atoi(buffer_stat[13]);
     //devo prendere stime,...
 }
-
+*/
 
 
 
 //General function that takes all processes informations
-void take_processes_info(){
+void take_processes_info(char** group_buffer){
     //printf("%s\n", group_buffer[search_group_id("/proc/1152/status")]);
 
     for (int num_pid = 1; num_pid<100000; num_pid++){
-        //inizializzo i buffer
+        //initialize stat string
         char stat[100] = "/proc/";
-        char statm[100] = "/proc/";
-        char cmdline[100] = "/proc/";
-        char status[100] = "/proc/";
         
-        //mi prendo la stringa del pid
+        //take pid string
         char pid[(int)((ceil(log10(num_pid))+1)*sizeof(char))];
         sprintf(pid, "%d", num_pid);
         
-        //faccio la prima strcat per un file
+        //first strcat, util for sanity check above
         strcat(stat, pid);
         strcat(stat, "/stat");
         
-        //se il file esiste continuo, altrimenti passo all'iterazione successiva
+        //Sanity check
         if(fopen(stat, "r") == NULL)
             continue; 
         
-        //faccio le altre strcat
-        strcat(stat, pid);
-        strcat(stat, "/stat");
+        //initialize others paths and do other strcat  
+        char statm[100] = "/proc/";
+        char cmdline[100] = "/proc/";
+        char status[100] = "/proc/";
         strcat(statm, pid);
         strcat(statm, "/statm");
         strcat(cmdline, pid);
         strcat(cmdline, "/cmdline");
         strcat(status, pid);
         strcat(status, "/status");
+        
 
-        //ti prendi i buffer dei file con strtok_aux
-        //per stat, stat, va bene strtok
-        //per status no
-        //per cmdline non serve
+        //take buffers with strtok_aux
+        //Not necessary for cmdline and status
         
         char* buffer_stat[BUFFER_SIZE];
         char* buffer_statm[BUFFER_SIZE];
         
         strtok_aux(stat, " ", buffer_stat);
+        strtok_aux(statm, " ", buffer_statm);
         
-        //chiami le relative funzioni
-        break;
+        //take all necessary parameters with the appropriate functions
+        char* user = group_buffer[search_group_id(status)];
+        char* priority = take_priority(buffer_stat);
+        char* nice_value = take_nice_value(buffer_stat);
+        char* virt = take_virt(buffer_stat);
+        char* res = take_res(buffer_statm);
+        char* share = take_share(buffer_statm);
+        char* status_string = take_status(buffer_stat);
+        int time = take_time(buffer_stat);
+        char cmdline_string[70];
+        char* command_line = take_cmdline(cmdline, cmdline_string);
+                
+        printf("%s\n", pid);
+        printf("%s\n", user);
+        printf("%s\n", priority);
+        printf("%s\n", nice_value); //errato
+        printf("%s\n", virt);
+        printf("%s\n", res); //errato
+        printf("%s\n", share); //errato
+        printf("%s\n", status_string);
+        printf("%d\n", time); //errato
+        printf("%s\n", command_line);
+
         
     } 
 
