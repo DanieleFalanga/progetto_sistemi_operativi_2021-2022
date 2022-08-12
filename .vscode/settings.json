@@ -1,10 +1,3 @@
 {
-    "makefile.extensionOutputFolder": "./.vscode",
-    "makefile.launchConfigurations": [
-        {
-            "cwd": "/home/dans/Documents/university/progetto_sistemi_operativi_2021-2022",
-            "binaryPath": "/home/dans/Documents/university/progetto_sistemi_operativi_2021-2022/similtop",
-            "binaryArgs": []
-        }
-    ]
+    "makefile.extensionOutputFolder": "./.vscode"
 }
