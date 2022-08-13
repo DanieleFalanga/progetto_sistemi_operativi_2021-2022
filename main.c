@@ -1,4 +1,5 @@
-#include "proc_function.h"
+#include "Threads/take_info_system.h"
+#include "Threads/take_processes_info.h"
 
 
 int main(int argc, char** argv){
