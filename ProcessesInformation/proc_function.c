@@ -5,7 +5,7 @@ char* take_priority(char** buffer){
 }
 
 char* take_nice_value(char** buffer){
-    return buffer[19];
+    return buffer[18];
 }
 
 char* take_virt(char** buffer){
@@ -17,18 +17,20 @@ char* take_status(char** buffer){
 }
 
 int take_time(char** buffer){
-    int utime = atoi(buffer[14]);
-    int stime = atoi(buffer[15]);
+    int utime = atoi(buffer[13]);
+    int stime = atoi(buffer[14]);
     int time = utime + stime;
     return time;
 }
 
-char* take_res(char** buffer){
-    return buffer[1];
+int take_res(char** buffer){
+    int res = atoi(buffer[1]);
+    return res*4;
 }
 
-char* take_share(char** buffer){
-    return buffer[2];
+int take_share(char** buffer){
+    int share = atoi(buffer[2]);
+    return share*4;
 }
 
 char* take_cmdline(char* path, char* string){

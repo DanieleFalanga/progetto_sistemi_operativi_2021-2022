@@ -50,28 +50,29 @@ void take_processes_info(char** group_buffer){
         char* priority = take_priority(buffer_stat);
         char* nice_value = take_nice_value(buffer_stat);
         char* virt = take_virt(buffer_stat);
-        char* res = take_res(buffer_statm);
-        char* share = take_share(buffer_statm);
+        int res = take_res(buffer_statm);
+        int share = take_share(buffer_statm);
         char* status_string = take_status(buffer_stat);
         int time = take_time(buffer_stat);
         char cmdline_string[70];
         char* command_line = take_cmdline(cmdline, cmdline_string);
         double cpu_usage=take_cpu_usage_process(buffer_stat);
                 
-        printf("cpu usage:  %lf\n", cpu_usage);
         
         printf("%s\n", pid);
-        /*
-        printf("%s\n", user);
-        printf("%s\n", priority);
-        printf("%s\n", nice_value); //errato
-        printf("%s\n", virt);
-        printf("%s\n", res); //errato
-        printf("%s\n", share); //errato
-        printf("%s\n", status_string);
-        printf("%d\n", time); //errato
-        printf("%s\n", command_line);
-        */
+        
+        printf("user: %s\n", user);
+        printf("PRI: %s\n", priority);
+        printf("NI: %s\n", nice_value); //errato
+        printf("VIRT: %s\n", virt);
+        printf("RES: %d\n", res); //errato
+
+        printf("SHARE: %d\n", share); //errato
+        printf("STATUS: %s\n", status_string);
+        printf("CPU:  %lf%\n", cpu_usage);
+        printf("TIME: %d\n", time); //errato
+        printf("CMD: %s\n", command_line);
+        break;
         
     } 
 }
