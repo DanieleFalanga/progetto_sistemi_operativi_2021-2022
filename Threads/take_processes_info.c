@@ -9,7 +9,7 @@ void take_processes_info(char** group_buffer){
         char stat[100] = "/proc/";
         
         //take pid string
-        char pid[(int)((ceil(log10(num_pid))+1)*sizeof(char))];
+        char pid[5000];//(int)((ceil(log10(num_pid))+1)*sizeof(char))];
         sprintf(pid, "%d", num_pid);
         
         //first strcat, util for sanity check above
@@ -69,7 +69,7 @@ void take_processes_info(char** group_buffer){
 
         printf("SHARE: %d\n", share); //errato
         printf("STATUS: %s\n", status_string);
-        printf("CPU:  %lf%\n", cpu_usage);
+        printf("CPU:  %lf\n", cpu_usage);
         printf("TIME: %d\n", time); //errato
         printf("CMD: %s\n", command_line);
         break;
