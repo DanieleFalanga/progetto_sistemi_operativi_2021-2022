@@ -1,4 +1,4 @@
-#include "aux_function.h"
+#include "aux_functions.h"
 
 
 //Daniele
@@ -30,6 +30,16 @@ void strtok_aux(char* path, char* delimiter, char** str_buffer){
     fclose(fptr);
     //ritorno il buffer
     return;
+}
+
+//Daniele
+/*Uptime in seconds*/
+double take_uptime(char* path_memfile){
+    double uptime;
+    char* uptime_buffer[2] = {};
+    strtok_aux(path_memfile, " ", uptime_buffer);
+    uptime = atof(uptime_buffer[0]);
+    return uptime;
 }
 
 //Flavio
@@ -103,3 +113,48 @@ void search_all_occurrences(char* path, char* delimiter, char* expression, int* 
     }
 }
 
+/*
+Auxiliary function that return list of group info in /etc/group, list is a array where cell number correspond to ID group number 
+and the corresponding strings the ID group name
+Daniele
+*/
+void take_group_info(char** group_buffer){
+    char* path = "/etc/group";
+    FILE* fptr = fopen(path, "r");
+    char string[2048];
+    int i = 0;
+    //prendo la riga
+    int string_count = 0;
+    while(fgets(string, 2048, fptr) != NULL){
+        //tokenizzo
+        //se la stringa è la numero 0 oppure la numero 2
+        char* ID_name = ""; 
+        char* token = strtok(string, ":");
+        while(token != NULL){
+            if(string_count == 0){
+                int len = strlen(token);
+                ID_name = token;
+                //printf("%s\n", ID_name);
+                string_count++;
+                token = strtok(NULL, ":");
+            }
+            if(string_count == 2){                
+                int ID_number = atoi(token);
+                int len = strlen(ID_name);
+                //printf("%s\n", ID_name);
+                group_buffer[ID_number] = malloc(sizeof(char*) * len + 1);
+                strcpy(group_buffer[ID_number], ID_name);
+                //printf("%s\n", group_buffer[ID_number]);
+                string_count++;
+                token = strtok(NULL, ":");
+
+            }
+            else{
+                string_count++;
+                token = strtok(NULL, ":");
+            }
+        }
+        i++;
+        string_count = 0;
+    }
+}

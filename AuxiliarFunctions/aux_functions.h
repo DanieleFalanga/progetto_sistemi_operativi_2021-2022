@@ -18,5 +18,6 @@
 void strtok_aux(char* path, char* delimiter, char** str_buffer);
 int search_first_occurrence(char* path, char* delimiter, char* expression);
 void search_all_occurrences(char* path, char* delimiter, char* expression, int* buffer_indices);
-
+double take_uptime(char* path);
+void take_group_info(char** group_buffer);
 

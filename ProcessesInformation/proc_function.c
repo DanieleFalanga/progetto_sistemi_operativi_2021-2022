@@ -66,51 +66,7 @@ int search_group_id(char* path){
     return group_id;
 }
 
-/*
-Auxiliary function that return list of group info in /etc/group, list is a array where cell number correspond to ID group number 
-and the corresponding strings the ID group name
-Daniele
-*/
-void take_group_info(char** group_buffer){
-    char* path = "/etc/group";
-    FILE* fptr = fopen(path, "r");
-    char string[2048];
-    int i = 0;
-    //prendo la riga
-    int string_count = 0;
-    while(fgets(string, 2048, fptr) != NULL){
-        //tokenizzo
-        //se la stringa è la numero 0 oppure la numero 2
-        char* ID_name = ""; 
-        char* token = strtok(string, ":");
-        while(token != NULL){
-            if(string_count == 0){
-                int len = strlen(token);
-                ID_name = token;
-                //printf("%s\n", ID_name);
-                string_count++;
-                token = strtok(NULL, ":");
-            }
-            if(string_count == 2){                
-                int ID_number = atoi(token);
-                int len = strlen(ID_name);
-                //printf("%s\n", ID_name);
-                group_buffer[ID_number] = malloc(sizeof(char*) * len + 1);
-                strcpy(group_buffer[ID_number], ID_name);
-                //printf("%s\n", group_buffer[ID_number]);
-                string_count++;
-                token = strtok(NULL, ":");
 
-            }
-            else{
-                string_count++;
-                token = strtok(NULL, ":");
-            }
-        }
-        i++;
-        string_count = 0;
-    }
-}
 
 //Flavio
 double take_cpu_usage_process(char** buffer_stat){

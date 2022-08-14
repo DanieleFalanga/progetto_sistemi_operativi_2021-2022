@@ -25,15 +25,7 @@ float take_mem_info(char** buffer){
     return mem_percentage;
 }
 
-//Daniele
-/*Uptime in seconds*/
-double take_uptime(char* path_memfile){
-    double uptime;
-    char* uptime_buffer[2] = {};
-    strtok_aux(path_memfile, " ", uptime_buffer);
-    uptime = atof(uptime_buffer[0]);
-    return uptime;
-}
+
 
 
 //Flavio
