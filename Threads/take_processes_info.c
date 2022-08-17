@@ -50,28 +50,44 @@ void take_processes_info(char** group_buffer){
         char* priority = take_priority(buffer_stat);
         char* nice_value = take_nice_value(buffer_stat);
         char* virt = take_virt(buffer_stat);
-        int res = take_res(buffer_statm);
-        int share = take_share(buffer_statm);
+        
+        //DA CONVERTIRE IN STRINGA
+        int int_res = take_res(buffer_statm);
+        char res[(int)((ceil(log10(int_res))+1)*sizeof(char))];//(int)((ceil(log10(num_pid))+1)*sizeof(char))];
+        sprintf(res, "%d", int_res);
+
+        int int_share = take_share(buffer_statm);
+        char share[(int)((ceil(log10(int_share))+1)*sizeof(char))];//(int)((ceil(log10(num_pid))+1)*sizeof(char))];
+        sprintf(share, "%d", int_share);
+
         char* status_string = take_status(buffer_stat);
-        int time = take_time(buffer_stat);
+        
+        //DA CONVERTIRE IN STRINGA
+        int int_time = take_time(buffer_stat);
+        char time[(int)((ceil(log10(int_time))+1)*sizeof(char))];//(int)((ceil(log10(num_pid))+1)*sizeof(char))];
+        sprintf(time, "%d", int_time);
+        
         char cmdline_string[70];
         char* command_line = take_cmdline(cmdline, cmdline_string);
-        double cpu_usage=take_cpu_usage_process(buffer_stat);
-                
         
-        printf("%s\n", pid);
-        
-        printf("user: %s\n", user);
-        printf("PRI: %s\n", priority);
-        printf("NI: %s\n", nice_value); //errato
-        printf("VIRT: %s\n", virt);
-        printf("RES: %d\n", res); //errato
+        //DA CONVERTIRE IN STRINGA
+        double double_cpu_usage=take_cpu_usage_process(buffer_stat);
+        char cpu_usage[50];//(int)((ceil(log10(num_pid))+1)*sizeof(char))];
+        sprintf(cpu_usage, "%f", cpu_usage);
 
-        printf("SHARE: %d\n", share); //errato
-        printf("STATUS: %s\n", status_string);
-        printf("CPU:  %lf\n", cpu_usage);
-        printf("TIME: %d\n", time); //errato
-        printf("CMD: %s\n", command_line);
+
+        mvprintw(10+num_pid, PID_COLUMN, pid);
+        mvprintw(10+num_pid, USER_COLUMN, user);
+        mvprintw(10+num_pid, PRI_COLUMN, priority);
+        mvprintw(10+num_pid, NI_COLUMN, nice_value);
+        mvprintw(10+num_pid, VIRT_COLUMN, virt);
+        mvprintw(10+num_pid, RES_COLUMN, res);
+        mvprintw(10+num_pid, SHR_COLUMN, share);
+        mvprintw(10+num_pid, S_COLUMN, status_string);
+        mvprintw(10+num_pid, CPU_COLUMN, time);
+        mvprintw(10+num_pid, TIME_COLUMN, cmdline_string);
+        mvprintw(10+num_pid, CMD_COLUMN, command_line);
+        
         break;
         
     } 

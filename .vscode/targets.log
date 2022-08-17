@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Aug 14 15:30:30 2022
+# Make data base, printed on Wed Aug 17 14:49:57 2022
 
 # Variables
 
@@ -49,7 +49,7 @@ XDG_DATA_DIRS = /home/dans/.local/share/flatpak/exports/share:/var/lib/flatpak/e
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_CODE_CACHE_PATH = /home/dans/.config/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
+VSCODE_CODE_CACHE_PATH = /home/dans/.config/Code/CachedData/6d9b74a70ca9c7733b29f0456fd8195364076dda
 # environment
 LANG = C
 # environment
@@ -81,13 +81,13 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 19265
+VSCODE_PID = 14261
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/Dans-PC:@/tmp/.ICE-unix/1179,unix/Dans-PC:/tmp/.ICE-unix/1179
+SESSION_MANAGER = local/Dans-PC:@/tmp/.ICE-unix/1182,unix/Dans-PC:/tmp/.ICE-unix/1182
 # automatic
 *F = $(notdir $*)
 # environment
@@ -121,7 +121,7 @@ MOTD_SHOWN = pam
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = d52bff9151f14001a90963cf6403e64e
+INVOCATION_ID = 02f1d93a3dde40309f548a43bafb6301
 # environment
 USERNAME = dans
 # automatic
@@ -131,7 +131,6 @@ XDG_CURRENT_DESKTOP = GNOME
 # automatic
 +F = $(notdir $+)
 # environment
- 
 DESKTOP_SESSION = gnome
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = GNOME
@@ -144,7 +143,7 @@ GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/visual-studio-code.desktop
 # makefile
 .DEFAULT_GOAL := similtop
 # environment
-SYSTEMD_EXEC_PID = 1194
+SYSTEMD_EXEC_PID = 1197
 # environment
 DISPLAY = :1
 # environment
@@ -152,9 +151,9 @@ USER = dans
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 1075
+MANAGERPID = 1083
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 19247
+GIO_LAUNCHED_DESKTOP_FILE_PID = 14244
 # environment
 _ = /usr/bin/make
 # environment
@@ -162,7 +161,7 @@ XDG_RUNTIME_DIR = /run/user/1000
 # makefile (from 'Makefile', line 2)
 CFLAGS = -I.
 # environment
-JOURNAL_STREAM = 8:25693
+JOURNAL_STREAM = 8:27672
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -172,7 +171,7 @@ HOME = /home/dans
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-f69fbb0b-1.69.2-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-f69fbb0b-1.70.1-main.sock
 # default
 .RECIPEPREFIX := 
 # automatic
@@ -187,7 +186,6 @@ VSCODE_CLI = 1
 ELECTRON_NO_ATTACH_CONSOLE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink guile load
- 
 # makefile (from 'Makefile', line 1)
 CC = gcc
 # environment
@@ -203,15 +201,15 @@ GDMSESSION = gnome
 
 # Directories
 
-# . (device 39, inode 513863): 12 files, no impossibilities.
+# . (device 39, inode 513863): 14 files, no impossibilities.
 
-# 12 files, no impossibilities in 1 directories.
+# 14 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 %.o: %.c AuxiliarFunctions/aux_functions.h ProcessesInformation/proc_function.h SystemInformation/system_function.h Threads/take_info_system.h Threads/take_processes_info.h
 #  recipe to execute (from 'Makefile', line 8):
-	$(CC) -lm -c -o $@ $< $(CFLAGS)
+	$(CC) -lm -lncurses -c -o $@ $< $(CFLAGS)
 
 # 1 implicit rules, 0 (0.0%) terminal.
 # Files
@@ -225,7 +223,7 @@ Threads/take_processes_info.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-14 15:30:07.150278586
+#  Last modified 2022-08-17 14:49:55.465397384
 #  File has been updated.
 #  Successfully updated.
 
@@ -259,7 +257,7 @@ similtop: main.o AuxiliarFunctions/aux_functions.o ProcessesInformation/proc_fun
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 11):
-	$(CC) -lm -o $@ $^ $(CFLAGS)
+	$(CC) -lm -lncurses -o $@ $^ $(CFLAGS)
 
 # Not a target:
 main.o:
@@ -277,6 +275,7 @@ Threads/take_info_system.o:
 SystemInformation/system_function.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
+ 
 #  File has not been updated.
 
 # files hash-table stats:
@@ -287,13 +286,12 @@ SystemInformation/system_function.o:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 30 / storage = 515 B / avg = 17 B
-# current buf: size = 8162 B / used = 515 B / count = 30 / avg = 17 B
+# strcache buffers: 1 (0) / strings = 31 / storage = 531 B / avg = 17 B
+# current buf: size = 8162 B / used = 531 B / count = 31 / avg = 17 B
 
-# strcache performance: lookups = 36 / hit rate = 16%
+# strcache performance: lookups = 38 / hit rate = 18%
 # hash-table stats:
-# Load=30/8192=0%, Rehash=0, Collisions=0/36=0%
- 
-# Finished Make data base on Sun Aug 14 15:30:30 2022
+# Load=31/8192=0%, Rehash=0, Collisions=0/38=0%
+# Finished Make data base on Wed Aug 17 14:49:57 2022
 
  

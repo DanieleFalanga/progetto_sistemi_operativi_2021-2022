@@ -1,10 +1,5 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory '/home/dans/Documents/university/progetto_sistemi_operativi_2021-2022'
-gcc -lm -c -o AuxiliarFunctions/aux_functions.o AuxiliarFunctions/aux_functions.c -I.
-gcc -lm -c -o ProcessesInformation/proc_function.o ProcessesInformation/proc_function.c -I.
-gcc -lm -c -o SystemInformation/system_function.o SystemInformation/system_function.c -I.
-gcc -lm -c -o Threads/take_info_system.o Threads/take_info_system.c -I.
-gcc -lm -c -o Threads/take_processes_info.o Threads/take_processes_info.c -I.
-gcc -lm -o similtop main.o AuxiliarFunctions/aux_functions.o ProcessesInformation/proc_function.o SystemInformation/system_function.o Threads/take_info_system.o Threads/take_processes_info.o -I.
+make: 'similtop' is up to date.
 make: Leaving directory '/home/dans/Documents/university/progetto_sistemi_operativi_2021-2022'
  

@@ -20,7 +20,28 @@ void create_label_information(){
                                                         //trova il cursore con i colori di PAIR
    
    
-    mvprintw(10, 0, "    PID        USER");     //stampa la stringa alle coordinate che gli vengono passate
+    mvprintw(10, 3, "PID");     //stampa la stringa alle coordinate che gli vengono passate
+    
+    mvprintw(10, 10, "USER");
+    
+    mvprintw(10, 22, "PRI");
+    
+    mvprintw(10, 27, "NI");
+    
+    mvprintw(10, 32, "VIRT");
+    
+    mvprintw(10, 39, "RES");
+    
+    mvprintw(10, 45, "SHR");
+    
+    mvprintw(10, 52, "S");
+    
+    mvprintw(10, 55, "CPU%");
+    
+    mvprintw(10, 61, "TIME");
+    
+    mvprintw(10, 70, "CMD");
+    
     attroff(COLOR_PAIR(2));     //disattiva l'attributo
     mvprintw(11, 4, "100");
     move(0,0);                  //fa tornare il cursore a coordinate (0,0)
@@ -35,12 +56,12 @@ void print_process_information(){
 
     //start ncurses source
     initscr();
-   	start_color();			                //- Start color functionality
-	init_pair(2, COLOR_BLACK, COLOR_GREEN);  //- attiva l'attributo COLOR_PAIR, che ha come coppia i colori NERO e VERDE, 
-                                            //  e associa la coppia al numero 2
-                                            //  3 argomenti: -numero associato alla coppia
-                                            //               -primo colore è lo sfondo
-                                            //               -secondo colore è la scritta
+   	start_color();			                     //- Start color functionality
+	  init_pair(2, COLOR_BLACK, COLOR_GREEN);  //- attiva l'attributo COLOR_PAIR, che ha come coppia i colori NERO e VERDE, 
+                                             //  e associa la coppia al numero 2
+                                             //  3 argomenti: -numero associato alla coppia
+                                             //               -primo colore è lo sfondo
+                                             //               -secondo colore è la scritta
 
 
     clear();

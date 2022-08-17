@@ -12,5 +12,5 @@ void take_info_system(){
     printf("%.2f\n", p);
 
     take_cores_usage_percentages(percentages, cpu_last_sum, cpu_last_idle);
-
+    
 }
