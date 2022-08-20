@@ -8,6 +8,7 @@
 #include <time.h>
 #include <sys/times.h>
 #include <ncurses.h>
+#include <signal.h>
 
 
 #define BUFFER_SIZE 5096

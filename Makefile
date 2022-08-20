@@ -5,7 +5,7 @@ OBJ = main.o AuxiliarFunctions/aux_functions.o ProcessesInformation/proc_functio
 
 
 %.o: %.c $(DEPS)
-	$(CC) -lm -lncurses -c -o $@ $< $(CFLAGS)
+	$(CC) -lm -lncurses -g -c -o $@ $< $(CFLAGS)
 
 similtop: $(OBJ)
-	$(CC) -lm -lncurses -o $@ $^ $(CFLAGS)
+	$(CC) -lm -lncurses -g -o $@ $^ $(CFLAGS)
