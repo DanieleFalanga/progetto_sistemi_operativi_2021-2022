@@ -1,4 +1,4 @@
-#include "take_info_system.h"
+#include "take_system_info.h"
 
 void take_info_system(WINDOW* system_box){
     //Buffers

@@ -1,4 +1,4 @@
-#include "Threads/take_info_system.h"
+#include "Threads/take_system_info.h"
 #include "Threads/take_processes_info.h"
 
 
@@ -6,7 +6,7 @@ static void fine(int sig);
 void print_label_info(WINDOW* label);
 
 
-int main(int argc, char *argv[]){
+int boh(int argc, char *argv[]){
   
   
   /* Strutture dati da inizializzare */ 
@@ -124,4 +124,10 @@ void print_label_info(WINDOW* label){
   mvwprintw(label, 0, 55, "CPU%");
   mvwprintw(label, 0, 61, "TIME");
   mvwprintw(label, 0, 70, "CMD");
+}
+
+int main(){
+  char* group_buffer[65534];
+  take_group_info(group_buffer);
+  take_processes_info(group_buffer, NULL);
 }

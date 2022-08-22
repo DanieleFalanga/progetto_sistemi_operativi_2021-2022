@@ -4,8 +4,9 @@ gcc -lm -lncurses -g -c -o main.o main.c -I.
 gcc -lm -lncurses -g -c -o AuxiliarFunctions/aux_functions.o AuxiliarFunctions/aux_functions.c -I.
 gcc -lm -lncurses -g -c -o ProcessesInformation/proc_function.o ProcessesInformation/proc_function.c -I.
 gcc -lm -lncurses -g -c -o SystemInformation/system_function.o SystemInformation/system_function.c -I.
-gcc -lm -lncurses -g -c -o Threads/take_info_system.o Threads/take_info_system.c -I.
+gcc -lm -lncurses -g -c -o Threads/take_system_info.o Threads/take_system_info.c -I.
 gcc -lm -lncurses -g -c -o Threads/take_processes_info.o Threads/take_processes_info.c -I.
-gcc -lm -lncurses -g -o similtop main.o AuxiliarFunctions/aux_functions.o ProcessesInformation/proc_function.o SystemInformation/system_function.o Threads/take_info_system.o Threads/take_processes_info.o -I.
+ 
+gcc -lm -lncurses -g -o similtop main.o AuxiliarFunctions/aux_functions.o ProcessesInformation/proc_function.o SystemInformation/system_function.o Threads/take_system_info.o Threads/take_processes_info.o -I.
 make: Leaving directory '/home/dans/Documents/university/progetto_sistemi_operativi_2021-2022'
  

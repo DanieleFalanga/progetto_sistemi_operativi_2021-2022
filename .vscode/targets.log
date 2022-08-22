@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -8,12 +6,12 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Aug 20 13:14:16 2022
+# Make data base, printed on Mon Aug 22 20:01:04 2022
 
 # Variables
 
 # makefile (from 'Makefile', line 4)
-OBJ = main.o AuxiliarFunctions/aux_functions.o ProcessesInformation/proc_function.o SystemInformation/system_function.o Threads/take_info_system.o Threads/take_processes_info.o
+OBJ = main.o AuxiliarFunctions/aux_functions.o ProcessesInformation/proc_function.o SystemInformation/system_function.o Threads/take_system_info.o Threads/take_processes_info.o
 # environment
 GDK_BACKEND = x11
 # environment
@@ -81,13 +79,13 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 1925
+VSCODE_PID = 7360
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/Dans-PC:@/tmp/.ICE-unix/1401,unix/Dans-PC:/tmp/.ICE-unix/1401
+SESSION_MANAGER = local/Dans-PC:@/tmp/.ICE-unix/1164,unix/Dans-PC:/tmp/.ICE-unix/1164
 # automatic
 *F = $(notdir $*)
 # environment
@@ -121,7 +119,7 @@ MOTD_SHOWN = pam
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = e00cb65dd76a43f89e4ce01067b13859
+INVOCATION_ID = d757f54082f840baa0f0e9447602a5fd
 # environment
 USERNAME = dans
 # automatic
@@ -143,7 +141,7 @@ GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/visual-studio-code.desktop
 # makefile
 .DEFAULT_GOAL := similtop
 # environment
-SYSTEMD_EXEC_PID = 1416
+SYSTEMD_EXEC_PID = 1179
 # environment
 DISPLAY = :1
 # environment
@@ -151,11 +149,11 @@ USER = dans
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 1298
+MANAGERPID = 1063
 # environment
 DEBUGINFOD_URLS = https://debuginfod.archlinux.org 
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 1908
+GIO_LAUNCHED_DESKTOP_FILE_PID = 7342
 # environment
 _ = /usr/bin/make
 # environment
@@ -163,7 +161,7 @@ XDG_RUNTIME_DIR = /run/user/1000
 # makefile (from 'Makefile', line 2)
 CFLAGS = -I.
 # environment
-JOURNAL_STREAM = 8:26240
+JOURNAL_STREAM = 8:25161
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -179,7 +177,7 @@ VSCODE_IPC_HOOK = /run/user/1000/vscode-f69fbb0b-1.70.1-main.sock
 # automatic
 <F = $(notdir $<)
 # makefile (from 'Makefile', line 3)
-DEPS = AuxiliarFunctions/aux_functions.h ProcessesInformation/proc_function.h SystemInformation/system_function.h Threads/take_info_system.h Threads/take_processes_info.h
+DEPS = AuxiliarFunctions/aux_functions.h ProcessesInformation/proc_function.h SystemInformation/system_function.h Threads/take_system_info.h Threads/take_processes_info.h
 # default
 SUFFIXES := 
 # environment
@@ -209,7 +207,7 @@ GDMSESSION = gnome
 
 # Implicit Rules
 
-%.o: %.c AuxiliarFunctions/aux_functions.h ProcessesInformation/proc_function.h SystemInformation/system_function.h Threads/take_info_system.h Threads/take_processes_info.h
+%.o: %.c AuxiliarFunctions/aux_functions.h ProcessesInformation/proc_function.h SystemInformation/system_function.h Threads/take_system_info.h Threads/take_processes_info.h
 #  recipe to execute (from 'Makefile', line 8):
 	$(CC) -lm -lncurses -g -c -o $@ $< $(CFLAGS)
 
@@ -225,7 +223,7 @@ Threads/take_processes_info.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 15:28:45.463207907
+#  Last modified 2022-08-21 16:19:55.808863033
 #  File has been updated.
 #  Successfully updated.
 
@@ -237,6 +235,12 @@ ProcessesInformation/proc_function.o:
 
 # Not a target:
 AuxiliarFunctions/aux_functions.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Threads/take_system_info.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -254,7 +258,7 @@ all:
 #  File does not exist.
 #  File has not been updated.
 
-similtop: main.o AuxiliarFunctions/aux_functions.o ProcessesInformation/proc_function.o SystemInformation/system_function.o Threads/take_info_system.o Threads/take_processes_info.o
+similtop: main.o AuxiliarFunctions/aux_functions.o ProcessesInformation/proc_function.o SystemInformation/system_function.o Threads/take_system_info.o Threads/take_processes_info.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -263,12 +267,6 @@ similtop: main.o AuxiliarFunctions/aux_functions.o ProcessesInformation/proc_fun
 
 # Not a target:
 main.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-Threads/take_info_system.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -283,16 +281,23 @@ SystemInformation/system_function.o:
 # Load=11/1024=1%, Rehash=0, Collisions=0/27=0%
 # VPATH Search Paths
 
+ 
+make: *** No rule to make target 'all'.  Stop.
+
 # No 'vpath' search paths.
+ 
 
+ 
 # No general ('VPATH' variable) search path.
+ 
 
+ 
 # strcache buffers: 1 (0) / strings = 30 / storage = 515 B / avg = 17 B
 # current buf: size = 8162 B / used = 515 B / count = 30 / avg = 17 B
 
 # strcache performance: lookups = 37 / hit rate = 18%
 # hash-table stats:
 # Load=30/8192=0%, Rehash=0, Collisions=0/37=0%
-# Finished Make data base on Sat Aug 20 13:14:16 2022
+# Finished Make data base on Mon Aug 22 20:01:04 2022
 
  

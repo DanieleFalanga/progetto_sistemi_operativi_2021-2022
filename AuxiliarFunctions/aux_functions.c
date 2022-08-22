@@ -158,3 +158,12 @@ void take_group_info(char** group_buffer){
         string_count = 0;
     }
 }
+
+//Funzione presa da StackOverflow https://stackoverflow.com/questions/4553012/checking-if-a-file-is-a-directory-or-just-a-file
+
+int is_regular_file(const char *path)
+{
+    struct stat path_stat;
+    stat(path, &path_stat);
+    return S_ISREG(path_stat.st_mode);
+}

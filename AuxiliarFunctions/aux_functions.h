@@ -9,6 +9,9 @@
 #include <sys/times.h>
 #include <ncurses.h>
 #include <signal.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <sys/stat.h>
 
 
 #define BUFFER_SIZE 5096
@@ -23,4 +26,4 @@ int search_first_occurrence(char* path, char* delimiter, char* expression);
 void search_all_occurrences(char* path, char* delimiter, char* expression, int* buffer_indices);
 double take_uptime(char* path);
 void take_group_info(char** group_buffer);
-
+int is_regular_file(const char *path); 
