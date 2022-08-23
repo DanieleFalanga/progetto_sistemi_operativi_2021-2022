@@ -27,7 +27,8 @@ void strtok_aux(char* path, char* delimiter, char** str_buffer){
         
     }
     
-    fclose(fptr);
+    if(fclose(fptr)!=0) 
+        printf("%d\n", errno);
     //ritorno il buffer
     return;
 }

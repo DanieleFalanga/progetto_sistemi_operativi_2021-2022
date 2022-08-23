@@ -130,4 +130,5 @@ int main(){
   char* group_buffer[65534];
   take_group_info(group_buffer);
   take_processes_info(group_buffer, NULL);
+  
 }

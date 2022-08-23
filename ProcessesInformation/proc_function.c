@@ -33,11 +33,12 @@ int take_share(char** buffer){
     return share*4;
 }
 
-char* take_cmdline(char* path, char* string){
+void take_cmdline(char* path, char* string){
     FILE* fptr = fopen(path, "r");
-    fgets(string, 70, fptr);
-    fclose(fptr);
-    return string;
+    fgets(string, 1000, fptr);
+    if(fclose(fptr)!=0)
+        printf("%d\n", errno);
+  //  return string;
 }
 
 int search_group_id(char* path){
