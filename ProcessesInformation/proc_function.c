@@ -9,6 +9,8 @@ char* take_nice_value(char** buffer){
 }
 
 char* take_virt(char** buffer){
+    //TODO: da trasfirmare in kB, MB,...
+
     return buffer[22];
 }
 
@@ -16,21 +18,31 @@ char* take_status(char** buffer){
     return buffer[2];
 }
 
-int take_time(char** buffer){
+char* take_time(char** buffer){
     int utime = atoi(buffer[13]);
     int stime = atoi(buffer[14]);
     int time = utime + stime;
-    return time;
+    //char str[(int)((ceil(log10(time))+1)*sizeof(char))];
+    char str[50];
+    sprintf(str, "%d", time);
+
+    return str;
 }
 
-int take_res(char** buffer){
-    int res = atoi(buffer[1]);
-    return res*4;
+char* take_res(char** buffer){
+    int res = atoi(buffer[1])*4;
+    //char str[(int)((ceil(log10(res))+1)*sizeof(char))];
+    char str[50];
+    sprintf(str, "%d", res);
+    return str;
 }
 
-int take_share(char** buffer){
-    int share = atoi(buffer[2]);
-    return share*4;
+char* take_share(char** buffer){
+    int share = atoi(buffer[2])*4;
+    //char str[(int)((ceil(log10(share))+1)*sizeof(char))];
+    char str[50];
+    sprintf(str, "%d", share);
+    return str;
 }
 
 void take_cmdline(char* path, char* string){
@@ -72,19 +84,30 @@ int search_group_id(char* path){
 
 
 //Flavio
-double take_cpu_usage_process(char** buffer_stat){
+char* take_cpu_usage_process(char** buffer_stat){
     double utime=atof(buffer_stat[13])/sysconf(_SC_CLK_TCK);
     double stime=atof(buffer_stat[14])/sysconf(_SC_CLK_TCK);
     //printf("%f\n", stime);
 
     double starttime=atof(buffer_stat[21])/sysconf(_SC_CLK_TCK);
     double cpu_usage= (utime+stime)*100/(UPTIME-starttime);
-    return cpu_usage;
+    
+    //TODO: approssima a due/tre cifre
+
+    //char str[(int)((ceil(log10(cpu_usage))+1)*sizeof(char))];
+    char str[50];
+    sprintf(str, "%lf", cpu_usage);
+    return str;
 
 
 }
 
 
+/////////////////////////////////////////////
+int is_a_process(char** buffer){
+//    printf("pid: %s\tgpid: %s\n\n", buffer[7], buffer[11]);
+    return strcmp(buffer[7],buffer[11]);
+}
 
 
 

@@ -6,8 +6,8 @@ static void fine(int sig);
 void print_label_info(WINDOW* label);
 
 
-int boh(int argc, char *argv[]){
-  
+//int boh(int argc, char *argv[]){
+int main(){
   
   /* Strutture dati da inizializzare */ 
   
@@ -38,7 +38,7 @@ int boh(int argc, char *argv[]){
     //titolo del pair, utile dopo. 2° Colore delle scritte, 3° Colore di BackGround 
     
     init_pair(1, COLOR_BLACK, COLOR_WHITE); //Colore titolo 
-    init_pair(2,COLOR_BLACK, COLOR_CYAN); //Colore Label processi
+    init_pair(2,COLOR_BLACK, COLOR_GREEN); //Colore Label processi
   }
 
 
@@ -56,7 +56,7 @@ int boh(int argc, char *argv[]){
 
   //creo 3 finestre, 1° finestra è per le info di sistema
   
-  WINDOW* system_box = newwin(10,COLS/2, 1,0);
+  WINDOW* system_box = newwin(0,0,1,0);//10,COLS/2, 1,0);
   box(system_box,1,0);                          //Stampa i bordi della finestra
   wrefresh(system_box);                         //Refresh della singola finestra
   
@@ -64,7 +64,7 @@ int boh(int argc, char *argv[]){
 
   //2° finestra è la label dei processi
   
-  WINDOW* label = newwin(1, COLS, 11,0);
+  WINDOW* label = newwin(0,0,11,0);//1, COLS, 11,0);
   wbkgd(label,COLOR_PAIR(2));
   print_label_info(label);
   wrefresh(label);
@@ -72,7 +72,8 @@ int boh(int argc, char *argv[]){
 
   //3° finestra è il box dei processi
   
-  WINDOW* process_box = newwin(LINES, COLS, 12,0);
+  WINDOW* process_box = newwin(0, 0, 12,0);   //primmi due parametri devono essere 0 per 
+                                              //non dare numero fisso di righe e colonne
   box(process_box, 12,0);
   wrefresh(process_box);
   
@@ -82,7 +83,9 @@ int boh(int argc, char *argv[]){
       
       take_info_system(system_box); //Stampo le info di sistema nel suo box    
       
-      //take_processes_info(group_buffer, process);
+
+      //TODO: va aggiunta una scrollbar per scorrere i processi che non si vedono a video
+      take_processes_info(group_buffer, process_box);
       
 
       //Una volta fatte le stampe ne faccio il refresh
@@ -90,9 +93,9 @@ int boh(int argc, char *argv[]){
       wrefresh(system_box);
       wrefresh(process_box);  
       
-      //sleep(2);
+      sleep(2);
   }
-  fine(0);               //Fine del programma 
+  //fine(0);               //Fine del programma 
 }
 
 
@@ -126,9 +129,11 @@ void print_label_info(WINDOW* label){
   mvwprintw(label, 0, 70, "CMD");
 }
 
-int main(){
+/*int main(){
   char* group_buffer[65534];
   take_group_info(group_buffer);
   take_processes_info(group_buffer, NULL);
-  
-}
+//  char* buffer_status[BUFFER_SIZE];
+//  strtok_aux("/proc/1/status", "\t", buffer_status);
+//  printf("%s    %s\n", buffer_status[7], buffer_status[11]);
+}*/
