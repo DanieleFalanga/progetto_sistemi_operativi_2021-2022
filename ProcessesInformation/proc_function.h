@@ -5,12 +5,12 @@
 #define PRI_COLUMN 22 
 #define NI_COLUMN 27 
 #define VIRT_COLUMN 32
-#define RES_COLUMN 39
-#define SHR_COLUMN 45
-#define S_COLUMN 52
-#define CPU_COLUMN 55
-#define TIME_COLUMN 61
-#define CMD_COLUMN 70
+#define RES_COLUMN 40
+#define SHR_COLUMN 47
+#define S_COLUMN 54
+#define CPU_COLUMN 57
+#define TIME_COLUMN 63
+#define CMD_COLUMN 72
 
 char* take_priority(char** buffer);
 char* take_nice_value(char** buffer);

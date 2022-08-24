@@ -56,12 +56,12 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
         char* pid =procDirent->d_name;
         char* priority;
         char* nice_value; 
-        char virt[10];
+        char* virt = (char*)malloc(sizeof(char)*1000);    //char virt[10]="";
         char* status;
-        char time[10];
-        char cpu_usage[10];
-        char res[10];
-        char share[10];
+        char* time = (char*)malloc(sizeof(char)*1000);    //char time[10]="";
+        char* cpu_usage = (char*)malloc(sizeof(char)*1000);    //char cpu_usage[10]="";
+        char* res = (char*)malloc(sizeof(char)*1000);    //char res[10]="";
+        char* share = (char*)malloc(sizeof(char)*1000);    //char share[10]="";
         char* user;
         char cmdline[1000]="";
         char* buffer_statm[BUFFER_SIZE];
@@ -139,17 +139,21 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
             printf("%s\n",priority);
             printf("%s\n",nice_value);
             printf("%s\n",virt);
-            printf("%d\n",res);
-            printf("%d\n",share);
+            printf("%s\n",res);
+            printf("%s\n",share);
             printf("%s\n",status);
-            printf("%.2f\n",cpu_usage);
-            printf("%d\n",time);
+            printf("%s\n",cpu_usage);
+            printf("%s\n",time);
             printf("%s\n\n\n",cmdline);
 */
             count++;
             print_process_info(process_box, count, pid, user, priority, nice_value, virt, res, share, status, cpu_usage, time, cmdline);
         }
-
+        free(virt);
+        free(share);
+        free(res);
+        free(cpu_usage);
+        free(time);
     }
     // Close directory and exit.
     closedir (proc);

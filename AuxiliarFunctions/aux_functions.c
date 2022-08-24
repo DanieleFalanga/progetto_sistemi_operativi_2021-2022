@@ -12,7 +12,7 @@ void strtok_aux(char* path, char* delimiter, char** str_buffer){
     }
     //prendo lo stringone
     int count = 0;
-    while (fgets(string, 2048, fptr) != NULL)
+    while (fgets(string, 1000000, fptr) != NULL)
     {
         //lo tokenizzo e inserisco in ogni puntatore dell' array la stringa di riferimento
         char* token = strtok(string, delimiter);

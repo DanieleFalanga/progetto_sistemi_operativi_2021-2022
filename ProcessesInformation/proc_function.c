@@ -65,11 +65,11 @@ char* take_share(char** buffer){
 }
 */
 void take_time(char** buffer, char* str){
-    int utime = atoi(buffer[13]);
-    int stime = atoi(buffer[14]);
-    int time = utime + stime;
+    float utime = atof(buffer[13]);
+    float stime = atof(buffer[14]);
+    float time = utime + stime;
     //char str[(int)((ceil(log10(time))+1)*sizeof(char))];
-    sprintf(str, "%d", time);
+    sprintf(str, "%.3f", time);
 }
 void take_res(char** buffer, char* str){
     int res = atoi(buffer[1])*4;
@@ -154,7 +154,7 @@ void take_cpu_usage_process(char** buffer_stat, char* str){
     //TODO: approssima a due/tre cifre
 
     //char str[(int)((ceil(log10(cpu_usage))+1)*sizeof(char))];
-    sprintf(str, "%lf", cpu_usage);
+    sprintf(str, "%.2lf", cpu_usage);
 }
 
 
