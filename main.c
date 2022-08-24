@@ -95,7 +95,7 @@ int main(){
       
       sleep(2);
   }
-  //fine(0);               //Fine del programma 
+  fine(0);               //Fine del programma 
 }
 
 

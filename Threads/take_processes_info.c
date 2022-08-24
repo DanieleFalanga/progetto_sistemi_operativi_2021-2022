@@ -56,12 +56,12 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
         char* pid =procDirent->d_name;
         char* priority;
         char* nice_value; 
-        char* virt;
+        char virt[10];
         char* status;
-        char* time;
-        char* cpu_usage;
-        char* res;
-        char* share;
+        char time[10];
+        char cpu_usage[10];
+        char res[10];
+        char share[10];
         char* user;
         char cmdline[1000]="";
         char* buffer_statm[BUFFER_SIZE];
@@ -88,10 +88,10 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
                 strtok_aux(path, " ", buffer_stat);
                 priority = take_priority(buffer_stat);
                 nice_value = take_nice_value(buffer_stat);
-                virt = take_virt(buffer_stat);
+                take_virt(buffer_stat, virt);
                 status = take_status(buffer_stat);
-                time = take_time(buffer_stat);
-                cpu_usage=take_cpu_usage_process(buffer_stat);
+                take_time(buffer_stat, time);
+                take_cpu_usage_process(buffer_stat, cpu_usage);
             }
             else if (strcmp("statm", proc_pid_Dirent->d_name) == 0){
 
@@ -100,8 +100,8 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
                 strcat(path, proc_pid_Dirent->d_name);
 
                 strtok_aux(path, " ", buffer_statm);
-                res = take_res(buffer_statm);
-                share = take_share(buffer_statm);        
+                take_res(buffer_statm, res);
+                take_share(buffer_statm, share);        
 
             }
             

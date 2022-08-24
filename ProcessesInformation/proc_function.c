@@ -8,17 +8,36 @@ char* take_nice_value(char** buffer){
     return buffer[18];
 }
 
-char* take_virt(char** buffer){
+/*char* take_virt(char** buffer){
     //TODO: da trasfirmare in kB, MB,...
-
-    return buffer[22];
+    char str[20];
+    float num = atof(buffer[22]);
+    if(num < 1000000){
+        sprintf(str, "%f", num);
+        return str;
+    }
+    num /= (1024*1024);
+    sprintf(str, "%.2fM", num);
+    return str;
 }
+*/
+void take_virt(char** buffer, char* str){
+    //TODO: da trasfirmare in kB, MB,...
+    float num = atof(buffer[22]);
+    if(num < 1000000){
+        sprintf(str, "%f", num);
+    }
+    num /= (1024*1024);
+    sprintf(str, "%.2fM", num);
+}
+
+
 
 char* take_status(char** buffer){
     return buffer[2];
 }
 
-char* take_time(char** buffer){
+/*char* take_time(char** buffer){
     int utime = atoi(buffer[13]);
     int stime = atoi(buffer[14]);
     int time = utime + stime;
@@ -44,6 +63,28 @@ char* take_share(char** buffer){
     sprintf(str, "%d", share);
     return str;
 }
+*/
+void take_time(char** buffer, char* str){
+    int utime = atoi(buffer[13]);
+    int stime = atoi(buffer[14]);
+    int time = utime + stime;
+    //char str[(int)((ceil(log10(time))+1)*sizeof(char))];
+    sprintf(str, "%d", time);
+}
+void take_res(char** buffer, char* str){
+    int res = atoi(buffer[1])*4;
+    //char str[(int)((ceil(log10(res))+1)*sizeof(char))];
+    sprintf(str, "%d", res);
+}
+void take_share(char** buffer, char* str){
+    int share = atoi(buffer[2])*4;
+    //char str[(int)((ceil(log10(share))+1)*sizeof(char))];
+    sprintf(str, "%d", share);
+}
+
+
+
+
 
 void take_cmdline(char* path, char* string){
     FILE* fptr = fopen(path, "r");
@@ -82,7 +123,7 @@ int search_group_id(char* path){
 }
 
 
-
+/*
 //Flavio
 char* take_cpu_usage_process(char** buffer_stat){
     double utime=atof(buffer_stat[13])/sysconf(_SC_CLK_TCK);
@@ -101,6 +142,22 @@ char* take_cpu_usage_process(char** buffer_stat){
 
 
 }
+*/
+void take_cpu_usage_process(char** buffer_stat, char* str){
+    double utime=atof(buffer_stat[13])/sysconf(_SC_CLK_TCK);
+    double stime=atof(buffer_stat[14])/sysconf(_SC_CLK_TCK);
+    //printf("%f\n", stime);
+
+    double starttime=atof(buffer_stat[21])/sysconf(_SC_CLK_TCK);
+    double cpu_usage= (utime+stime)*100/(UPTIME-starttime);
+    
+    //TODO: approssima a due/tre cifre
+
+    //char str[(int)((ceil(log10(cpu_usage))+1)*sizeof(char))];
+    sprintf(str, "%lf", cpu_usage);
+}
+
+
 
 
 /////////////////////////////////////////////
