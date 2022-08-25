@@ -28,3 +28,4 @@ void search_all_occurrences(char* path, char* delimiter, char* expression, int* 
 double take_uptime(char* path);
 void take_group_info(char** group_buffer);
 int is_regular_file(const char *path); 
+static void fine(int sig); 

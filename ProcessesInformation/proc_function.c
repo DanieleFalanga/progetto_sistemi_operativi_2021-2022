@@ -86,16 +86,27 @@ void take_share(char** buffer, char* str){
 
 
 
-void take_cmdline(char* path, char* string){
+char* take_cmdline(char* path){
     FILE* fptr = fopen(path, "r");
-    fgets(string, 1000, fptr);
+    char** buffer;
+    
+    //fgets(string, BUFFER_SIZE, fptr);
+    size_t* size = malloc(sizeof(size_t)*BUFFER_SIZE);
+    getline(buffer, size, fptr);
+
     if(fclose(fptr)!=0)
-        printf("%d\n", errno);
+        fprintf(stderr,"Impossibile chiudere file (cmd), %s\n", path);
   //  return string;
+    return buffer[0];
 }
 
 int search_group_id(char* path){
     FILE* fptr = fopen(path, "r");
+
+    if(fptr == NULL){
+        fprintf(stderr,"Impossibile aprire file (sg) %s\n", path);
+        return 1;
+    }
 
     char string[2048];
 
@@ -117,7 +128,12 @@ int search_group_id(char* path){
         }
         row++;
     }
+
     fclose(fptr);
+    if(fptr != 0){
+        fprintf(stderr,"Impossibile chiudere file (sg) %s\n", path);
+        return 1;
+    }
     //printf("%d\n", group_id)    
     return group_id;
 }

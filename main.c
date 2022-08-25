@@ -21,7 +21,7 @@ int main(){
   
   (void) signal(SIGINT, fine);      // termina al segnale di interruzione  
   (void) signal(SIGBUS, fine);
-  //(void) signal(SIGSEGV,fine);
+  (void) signal(SIGSEGV,fine);
   (void) initscr();      // inizializza la libreria curses 
   keypad(stdscr, TRUE);  // abilita la mappatura della tastiera  
   (void) nonl();         // non convertire NL->CR/NL in output 
@@ -92,9 +92,9 @@ int main(){
       //Una volta fatte le stampe ne faccio il refresh
       box(process_box, 0,0);
  
-      wrefresh(system_box);
-      wrefresh(process_box);  
-      
+      wnoutrefresh(system_box);
+      wnoutrefresh(process_box);  
+      doupdate();
       sleep(2);
   }
   fine(0);               //Fine del programma 
@@ -106,10 +106,10 @@ static void fine(int sig)
 {
     endwin();
     if(sig == SIGBUS){
-      printf("programm terminated with SIGBUS");
+      printf("programm terminated with SIGBUS: %d", errno);
     }
     if(sig == SIGSEGV){
-      printf("programm terminated with SIGSEGV");
+      printf("programm terminated with SIGSEGV: %d", errno);
     }
     
     exit(0);

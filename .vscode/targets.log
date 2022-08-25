@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
 # GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Aug 22 20:01:04 2022
+# Make data base, printed on Thu Aug 25 16:25:48 2022
 
 # Variables
 
@@ -79,13 +81,13 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 7360
+VSCODE_PID = 7611
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/Dans-PC:@/tmp/.ICE-unix/1164,unix/Dans-PC:/tmp/.ICE-unix/1164
+SESSION_MANAGER = local/Dans-PC:@/tmp/.ICE-unix/1208,unix/Dans-PC:/tmp/.ICE-unix/1208
 # automatic
 *F = $(notdir $*)
 # environment
@@ -119,7 +121,7 @@ MOTD_SHOWN = pam
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = d757f54082f840baa0f0e9447602a5fd
+INVOCATION_ID = 580135b4729a4821a68a4801654bf765
 # environment
 USERNAME = dans
 # automatic
@@ -141,7 +143,7 @@ GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/visual-studio-code.desktop
 # makefile
 .DEFAULT_GOAL := similtop
 # environment
-SYSTEMD_EXEC_PID = 1179
+SYSTEMD_EXEC_PID = 1223
 # environment
 DISPLAY = :1
 # environment
@@ -149,11 +151,11 @@ USER = dans
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 1063
+MANAGERPID = 1101
 # environment
 DEBUGINFOD_URLS = https://debuginfod.archlinux.org 
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 7342
+GIO_LAUNCHED_DESKTOP_FILE_PID = 7594
 # environment
 _ = /usr/bin/make
 # environment
@@ -161,7 +163,7 @@ XDG_RUNTIME_DIR = /run/user/1000
 # makefile (from 'Makefile', line 2)
 CFLAGS = -I.
 # environment
-JOURNAL_STREAM = 8:25161
+JOURNAL_STREAM = 8:26136
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -201,7 +203,7 @@ GDMSESSION = gnome
 
 # Directories
 
-# . (device 39, inode 513863): 13 files, no impossibilities.
+# . (device 40, inode 513863): 13 files, no impossibilities.
 
 # 13 files, no impossibilities in 1 directories.
 
@@ -209,7 +211,7 @@ GDMSESSION = gnome
 
 %.o: %.c AuxiliarFunctions/aux_functions.h ProcessesInformation/proc_function.h SystemInformation/system_function.h Threads/take_system_info.h Threads/take_processes_info.h
 #  recipe to execute (from 'Makefile', line 8):
-	$(CC) -lm -lncurses -g -c -o $@ $< $(CFLAGS)
+	$(CC) -lm -lncurses -g -c -o $@ $< $(CFLAGS) 
 
 # 1 implicit rules, 0 (0.0%) terminal.
 # Files
@@ -223,7 +225,7 @@ Threads/take_processes_info.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-21 16:19:55.808863033
+#  Last modified 2022-08-24 16:43:53.242600022
 #  File has been updated.
 #  Successfully updated.
 
@@ -263,7 +265,7 @@ similtop: main.o AuxiliarFunctions/aux_functions.o ProcessesInformation/proc_fun
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 11):
-	$(CC) -lm -lncurses -g -o $@ $^ $(CFLAGS)
+	$(CC) -lm -lncurses -g -o $@ $^ $(CFLAGS) 
 
 # Not a target:
 main.o:
@@ -281,23 +283,16 @@ SystemInformation/system_function.o:
 # Load=11/1024=1%, Rehash=0, Collisions=0/27=0%
 # VPATH Search Paths
 
- 
-make: *** No rule to make target 'all'.  Stop.
-
 # No 'vpath' search paths.
- 
 
- 
 # No general ('VPATH' variable) search path.
- 
 
- 
 # strcache buffers: 1 (0) / strings = 30 / storage = 515 B / avg = 17 B
 # current buf: size = 8162 B / used = 515 B / count = 30 / avg = 17 B
 
 # strcache performance: lookups = 37 / hit rate = 18%
 # hash-table stats:
 # Load=30/8192=0%, Rehash=0, Collisions=0/37=0%
-# Finished Make data base on Mon Aug 22 20:01:04 2022
+# Finished Make data base on Thu Aug 25 16:25:48 2022
 
  

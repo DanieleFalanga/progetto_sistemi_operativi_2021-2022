@@ -63,7 +63,7 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
         char* res = (char*)malloc(sizeof(char)*1000);    //char res[10]="";
         char* share = (char*)malloc(sizeof(char)*1000);    //char share[10]="";
         char* user;
-        char cmdline[1000]="";
+        char* cmdline = "";
         char* buffer_statm[BUFFER_SIZE];
         char* buffer_stat[BUFFER_SIZE];   
 
@@ -86,6 +86,7 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
                 strcat(path, proc_pid_Dirent->d_name);
 
                 strtok_aux(path, " ", buffer_stat);
+
                 priority = take_priority(buffer_stat);
                 nice_value = take_nice_value(buffer_stat);
                 take_virt(buffer_stat, virt);
@@ -113,21 +114,23 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
                 //fai controllo se il processo è un processo o un thread
                 char* buffer_status[BUFFER_SIZE];
                 strtok_aux(path, "\t", buffer_status);
+                
                 if(is_a_process(buffer_status)==0) {
                     is_process=1;
-                    user = group_buffer[search_group_id(path)];
+                    int group_id = atoi(buffer_status[18]);
+                    user = group_buffer[group_id];
                 }
                 else{
                     break;
                 }
-            }
+            }/*
             else if(strcmp("cmdline", proc_pid_Dirent->d_name) == 0){
                 strcat(path, directory);
                 strcat(path, "/");
                 strcat(path, proc_pid_Dirent->d_name);
 
-                take_cmdline(path, cmdline);
-            }
+                cmdline = take_cmdline(path);
+            }*/
          
         }
 
