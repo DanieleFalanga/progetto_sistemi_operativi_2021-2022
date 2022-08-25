@@ -90,18 +90,14 @@ int main(){
       take_processes_info(group_buffer, process_box);
 
       //Una volta fatte le stampe ne faccio il refresh
-      box(process_box, 0,0);
-<<<<<<< HEAD
- 
+      box(process_box, 0,0); 
       wnoutrefresh(system_box);
       wnoutrefresh(process_box);  
       doupdate();
-=======
 
       wrefresh(system_box);
       wrefresh(process_box);  
 
->>>>>>> refs/remotes/origin/main
       sleep(2);
   //}
   fine(0);               //Fine del programma 
