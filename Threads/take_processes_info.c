@@ -111,7 +111,7 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
                 strcat(path, proc_pid_Dirent->d_name);
 
                 //fai controllo se il processo è un processo o un thread
-                char* buffer_status[BUFFER_SIZE];
+                char* buffer_status[100000];
                 strtok_aux(path, "\t", buffer_status);
                 if(is_a_process(buffer_status)==0) {
                     is_process=1;

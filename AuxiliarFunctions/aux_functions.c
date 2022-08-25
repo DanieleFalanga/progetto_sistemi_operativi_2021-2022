@@ -5,14 +5,15 @@
 void strtok_aux(char* path, char* delimiter, char** str_buffer){
     FILE* fptr = fopen(path, "r"); 
     
-    char string[2048];
+    char string[BUFFER_SIZE];
 
     if(fptr == NULL){
         fprintf(stderr, "Impossibile aprile file %s\n", path);
+        return;
     }
     //prendo lo stringone
     int count = 0;
-    while (fgets(string, 1000000, fptr) != NULL)
+    while ((fgets(string, 2048, fptr)) != NULL)
     {
         //lo tokenizzo e inserisco in ogni puntatore dell' array la stringa di riferimento
         char* token = strtok(string, delimiter);
@@ -26,8 +27,8 @@ void strtok_aux(char* path, char* delimiter, char** str_buffer){
         }
         
     }
-    
-    if(fclose(fptr)!=0) 
+    int ret=fclose(fptr);
+    if(ret!=0) 
         printf("%d\n", errno);
     //ritorno il buffer
     return;

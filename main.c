@@ -21,7 +21,7 @@ int main(){
   
   (void) signal(SIGINT, fine);      // termina al segnale di interruzione  
   (void) signal(SIGBUS, fine);
-  //(void) signal(SIGSEGV,fine);
+  (void) signal(SIGSEGV,fine);
   (void) initscr();      // inizializza la libreria curses 
   keypad(stdscr, TRUE);  // abilita la mappatura della tastiera  
   (void) nonl();         // non convertire NL->CR/NL in output 
@@ -76,12 +76,12 @@ int main(){
                                               //non dare numero fisso di righe e colonne
   
   box(process_box, 0,0);
-  scrollok(process_box, TRUE);
   wrefresh(process_box);
-  
+   // scrollok(process_box, true);
+
   
   //Ciclo infinito del programma
- for(;;){
+ //for(;;){
       
       //take_info_system(system_box); //Stampo le info di sistema nel suo box    
       
@@ -91,12 +91,12 @@ int main(){
 
       //Una volta fatte le stampe ne faccio il refresh
       box(process_box, 0,0);
- 
+
       wrefresh(system_box);
       wrefresh(process_box);  
-      
+
       sleep(2);
-  }
+  //}
   fine(0);               //Fine del programma 
 }
 
