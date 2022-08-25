@@ -157,6 +157,7 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
         free(res);
         free(cpu_usage);
         free(time);
+        closedir(proc_pid);
     }
     // Close directory and exit.
     closedir (proc);

@@ -77,11 +77,11 @@ int main(){
   
   box(process_box, 0,0);
   wrefresh(process_box);
-   // scrollok(process_box, true);
+  scrollok(process_box, true);
 
   
   //Ciclo infinito del programma
- //for(;;){
+ for(;;){
       
       //take_info_system(system_box); //Stampo le info di sistema nel suo box    
       
@@ -99,7 +99,7 @@ int main(){
       wrefresh(process_box);  
 
       sleep(2);
-  //}
+  }
   fine(0);               //Fine del programma 
 }
 
