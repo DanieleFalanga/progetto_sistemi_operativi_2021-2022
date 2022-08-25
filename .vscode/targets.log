@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Aug 25 16:25:48 2022
+# Make data base, printed on Thu Aug 25 16:27:52 2022
 
 # Variables
 
@@ -81,7 +79,7 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 7611
+VSCODE_PID = 8493
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -155,7 +153,7 @@ MANAGERPID = 1101
 # environment
 DEBUGINFOD_URLS = https://debuginfod.archlinux.org 
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 7594
+GIO_LAUNCHED_DESKTOP_FILE_PID = 8475
 # environment
 _ = /usr/bin/make
 # environment
@@ -293,6 +291,8 @@ SystemInformation/system_function.o:
 # strcache performance: lookups = 37 / hit rate = 18%
 # hash-table stats:
 # Load=30/8192=0%, Rehash=0, Collisions=0/37=0%
-# Finished Make data base on Thu Aug 25 16:25:48 2022
+# Finished Make data base on Thu Aug 25 16:27:52 2022
 
  
+make: *** No rule to make target 'all'.  Stop.
+

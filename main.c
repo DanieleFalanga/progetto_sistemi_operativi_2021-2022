@@ -76,12 +76,12 @@ int main(){
                                               //non dare numero fisso di righe e colonne
   
   box(process_box, 0,0);
-  scrollok(process_box, TRUE);
   wrefresh(process_box);
-  
+   // scrollok(process_box, true);
+
   
   //Ciclo infinito del programma
- for(;;){
+ //for(;;){
       
       //take_info_system(system_box); //Stampo le info di sistema nel suo box    
       
@@ -91,12 +91,19 @@ int main(){
 
       //Una volta fatte le stampe ne faccio il refresh
       box(process_box, 0,0);
+<<<<<<< HEAD
  
       wnoutrefresh(system_box);
       wnoutrefresh(process_box);  
       doupdate();
+=======
+
+      wrefresh(system_box);
+      wrefresh(process_box);  
+
+>>>>>>> refs/remotes/origin/main
       sleep(2);
-  }
+  //}
   fine(0);               //Fine del programma 
 }
 
