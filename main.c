@@ -39,8 +39,9 @@ int main(){
     
     init_pair(1, COLOR_BLACK, COLOR_WHITE); //Colore titolo 
     init_pair(2,COLOR_BLACK, COLOR_GREEN); //Colore Label processi
+    init_pair(3, COLOR_WHITE, COLOR_BLACK);
   }
-
+  bkgd(COLOR_PAIR(3));
 
   //stampo il titolo
   
@@ -83,11 +84,11 @@ int main(){
   //Ciclo infinito del programma
  for(;;){
       
-      //take_info_system(system_box); //Stampo le info di sistema nel suo box    
+      take_info_system(system_box); //Stampo le info di sistema nel suo box    
       
 
       //TODO: va aggiunta una scrollbar per scorrere i processi che non si vedono a video
-      take_processes_info(group_buffer, process_box);
+      //take_processes_info(group_buffer, process_box);
 
       //Una volta fatte le stampe ne faccio il refresh
       box(process_box, 0,0); 
@@ -137,17 +138,17 @@ void print_label_info(WINDOW* label){
 
 
 //-----MAIN DI PROVA-----//
-
-/*int main(){
+/*
+int main(){
   char* group_buffer[65534];
   take_group_info(group_buffer);
-  take_processes_info(group_buffer, NULL);
+  take_info_system(NULL);
+//  take_processes_info(group_buffer, NULL);
 //  char* buffer_status[BUFFER_SIZE];
 //  strtok_aux("/proc/1/status", "\t", buffer_status);
 //  printf("%s    %s\n", buffer_status[7], buffer_status[11]);
 }
 */
-
 /*int main(){
    char* group_buffer[65534];
   take_group_info(group_buffer);  
