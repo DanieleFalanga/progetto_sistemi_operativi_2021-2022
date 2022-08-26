@@ -135,20 +135,12 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
         }
 
         //se è processo stampa, sennò no
-        if(is_process==1){
-/*            printf("\n\nINFO\n");
-            printf("%s\n",pid);
-            printf("%s\n",user);
-            printf("%s\n",priority);
-            printf("%s\n",nice_value);
-            printf("%s\n",virt);
-            printf("%s\n",res);
-            printf("%s\n",share);
-            printf("%s\n",status);
-            printf("%s\n",cpu_usage);
-            printf("%s\n",time);
-            printf("%s\n\n\n",cmdline);
+
+/*Consideriamo terminale a schermo intero. Un metodo per stamparli potrebbe essere di contare quante sono le righe della process box (che sono fisse)
+  e stampiamo solo le righe che entrano a schermo. Teniamo un contatore che tiene conto della prima riga non letta. Se si preme la freccia in giù una 
+  volta, andiamo a cancellare la prima riga con clrtoeol (o una di quelle), e ristampiamo le righe scalandole tutte di una.
 */
+        if(is_process==1){
             count++;
             print_process_info(process_box, count, pid, user, priority, nice_value, virt, res, share, status, cpu_usage, time, cmdline);
         }

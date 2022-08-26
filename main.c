@@ -23,10 +23,10 @@ int main(){
   (void) signal(SIGBUS, fine);
   (void) signal(SIGSEGV,fine);
   (void) initscr();      // inizializza la libreria curses 
-  keypad(stdscr, TRUE);  // abilita la mappatura della tastiera  
   (void) nonl();         // non convertire NL->CR/NL in output 
   (void) cbreak();       // prende i caratteri in input uno alla volta, senza attendere il \n  
   (void) noecho();       // nessuna echo dell'input  
+  curs_set(0);
   refresh();
   
 
@@ -78,17 +78,16 @@ int main(){
   
   box(process_box, 0,0);
   wrefresh(process_box);
-  scrollok(process_box, true);
-
+  //scrollok(process_box, true);
+  keypad(process_box, TRUE);  // abilita la mappatura della tastiera  
+  wmove(process_box, 1, 1);
   
   //Ciclo infinito del programma
  for(;;){
       
       take_info_system(system_box); //Stampo le info di sistema nel suo box    
-      
 
-      //TODO: va aggiunta una scrollbar per scorrere i processi che non si vedono a video
-      //take_processes_info(group_buffer, process_box);
+      take_processes_info(group_buffer, process_box);
 
       //Una volta fatte le stampe ne faccio il refresh
       box(process_box, 0,0); 
