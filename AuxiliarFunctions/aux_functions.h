@@ -13,12 +13,14 @@
 #include <dirent.h>
 #include <sys/stat.h>
 #include <errno.h>
+#include <pthread.h>
 
 
 #define BUFFER_SIZE 5096
 #define NUM_OF_CORES (take_num_of_cores())
 #define UPTIME (take_uptime("/proc/uptime"))
 
+int counter_row_min;
 
 
 

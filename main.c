@@ -1,6 +1,6 @@
 #include "Threads/take_system_info.h"
 #include "Threads/take_processes_info.h"
-
+#include "Threads/action_handler.h"
 
 static void fine(int sig); 
 void print_label_info(WINDOW* label);
@@ -8,9 +8,10 @@ void print_label_info(WINDOW* label);
 
 //int boh(int argc, char *argv[]){
 int main(){
-  
+
   // Strutture dati da inizializzare 
-  
+  counter_row_min=0;
+
   char* group_buffer[65534];
   take_group_info(group_buffer);  
   char* titolo = "SimilTop di Flavio Volpi e Daniele Falanga";
@@ -28,7 +29,7 @@ int main(){
   (void) noecho();       // nessuna echo dell'input  
   curs_set(0);
   refresh();
-  
+
 
   //inizializzo i colori, controllo che il terminale li supporti
   
@@ -81,9 +82,19 @@ int main(){
   //scrollok(process_box, true);
   keypad(process_box, TRUE);  // abilita la mappatura della tastiera  
   wmove(process_box, 1, 1);
-  
+
+
+//IL THREAD DEVE CHIAMARE ACTION_HANDLER PER GESTIRE LO SCORRIMENTO DELLE RIGHE DEL PROCESS_BOX.
+//PROBABILMENTE ACTION_HANDLER È SBAGLIATO, MA ALMENO IL THREAD LO ODVREBBE CREARE
+
+  //thread per la gestione delle freccette
+  pthread_t* thread;
+  int ret=pthread_create(thread, NULL, &action_handler, process_box);
+  if(ret!=0) printf("errore nel thread...\n\n");
+  printf("eccomi\n");
+
   //Ciclo infinito del programma
- for(;;){
+  for(;;){
       
       take_info_system(system_box); //Stampo le info di sistema nel suo box    
 
@@ -100,6 +111,8 @@ int main(){
 
       sleep(2);
   }
+  ret=pthread_exit(*thread);   //fine thread
+  if(ret) printf("errore nella chiusura del thread\n");
   fine(0);               //Fine del programma 
 }
 
@@ -107,12 +120,13 @@ int main(){
 //Funzione di gestione dei segnali
 static void fine(int sig) 
 {
+    
     endwin();
     if(sig == SIGBUS){
-      printf("programm terminated with SIGBUS: %d", errno);
+      printf("programm terminated with SIGBUS: %d\n", errno);
     }
     if(sig == SIGSEGV){
-      printf("programm terminated with SIGSEGV: %d", errno);
+      printf("programm terminated with SIGSEGV: %d\n", errno);
     }
     
     exit(0);

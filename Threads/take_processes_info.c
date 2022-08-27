@@ -1,18 +1,20 @@
 #include "take_processes_info.h"
 #include <limits.h>
 
+
+
 void print_process_info(WINDOW* process_box, int count, char* pid, char* user, char* priority, char* nice_value, char* virt, char* res, char* share, char* status, char* cpu_usage, char* time, char* cmdline){
-    mvwprintw(process_box, count, PID_COLUMN, pid);
-    mvwprintw(process_box, count, USER_COLUMN, user);
-    mvwprintw(process_box, count, PRI_COLUMN, priority);
-    mvwprintw(process_box, count, NI_COLUMN, nice_value);
-    mvwprintw(process_box, count, VIRT_COLUMN, virt);
-    mvwprintw(process_box, count, RES_COLUMN, res);
-    mvwprintw(process_box, count, SHR_COLUMN, share);
-    mvwprintw(process_box, count, S_COLUMN, status);
-    mvwprintw(process_box, count, CPU_COLUMN, cpu_usage);
-    mvwprintw(process_box, count, TIME_COLUMN, time);
-    mvwprintw(process_box, count, CMD_COLUMN, "");
+    mvwprintw(process_box, count-counter_row_min, PID_COLUMN, pid);
+    mvwprintw(process_box, count-counter_row_min, USER_COLUMN, user);
+    mvwprintw(process_box, count-counter_row_min, PRI_COLUMN, priority);
+    mvwprintw(process_box, count-counter_row_min, NI_COLUMN, nice_value);
+    mvwprintw(process_box, count-counter_row_min, VIRT_COLUMN, virt);
+    mvwprintw(process_box, count-counter_row_min, RES_COLUMN, res);
+    mvwprintw(process_box, count-counter_row_min, SHR_COLUMN, share);
+    mvwprintw(process_box, count-counter_row_min, S_COLUMN, status);
+    mvwprintw(process_box, count-counter_row_min, CPU_COLUMN, cpu_usage);
+    mvwprintw(process_box, count-counter_row_min, TIME_COLUMN, time);
+    mvwprintw(process_box, count-counter_row_min, CMD_COLUMN, "");
 }
 
 
@@ -32,8 +34,14 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
 //    printf("sto aprendo la directory proc\n");
     // Process each entry.
     //analizzo ogni singolo file/directory nella cartella proc
+    int x=0;
+    int y=0;
+    getmaxyx(process_box, y, x);
+    int counter_row_max = counter_row_min + y;
     int count = 0;
-    while ((procDirent = readdir(proc)) != NULL) {
+
+
+    while ((procDirent = readdir(proc)) != NULL && count >= counter_row_min && count < counter_row_max) {
 //        printf("sto analizzando la cartella proc\n");
 
 

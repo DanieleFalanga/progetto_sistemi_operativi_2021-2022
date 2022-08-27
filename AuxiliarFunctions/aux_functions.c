@@ -1,5 +1,6 @@
 #include "aux_functions.h"
 
+
 //Daniele
 void strtok_aux(char* path, char* delimiter, char** str_buffer){
     FILE* fptr = fopen(path, "r"); 
