@@ -41,12 +41,19 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
     int count = 0;
 
 
-    while ((procDirent = readdir(proc)) != NULL && count >= counter_row_min && count < counter_row_max) {
+    while ((procDirent = readdir(proc)) != NULL) {
 //        printf("sto analizzando la cartella proc\n");
 
-
         //qua sto considerando la singola cartella/file
-    
+
+
+        //PROVA PER LO SCORRIMENTO DELLA LISTA
+        if(count < counter_row_min || count>=counter_row_max){
+            count++;
+            continue;
+        }
+
+        
         char* end;
         errno=0;
         long val = strtol(procDirent->d_name, &end, 10);
@@ -151,6 +158,7 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
         if(is_process==1){
             count++;
             print_process_info(process_box, count, pid, user, priority, nice_value, virt, res, share, status, cpu_usage, time, cmdline);
+
         }
         free(virt);
         free(share);
