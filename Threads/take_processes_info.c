@@ -2,7 +2,6 @@
 #include <limits.h>
 
 
-
 void print_process_info(WINDOW* process_box, int count, char* pid, char* user, char* priority, char* nice_value, char* virt, char* res, char* share, char* status, char* cpu_usage, char* time, char* cmdline){
     mvwprintw(process_box, count-counter_row_min, PID_COLUMN, pid);
     mvwprintw(process_box, count-counter_row_min, USER_COLUMN, user);
@@ -37,7 +36,7 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
     int x=0;
     int y=0;
     getmaxyx(process_box, y, x);
-    int counter_row_max = counter_row_min + y;
+    int counter_row_max = counter_row_min + y-2;
     int count = 0;
 
 
@@ -46,14 +45,8 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
 
         //qua sto considerando la singola cartella/file
 
-
-        //PROVA PER LO SCORRIMENTO DELLA LISTA
-        if(count < counter_row_min || count>=counter_row_max){
-            count++;
-            continue;
-        }
-
-        
+     
+        //verifica se la cartella che sta aprendo è di un processo o no        
         char* end;
         errno=0;
         long val = strtol(procDirent->d_name, &end, 10);
@@ -62,11 +55,20 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
         }
 
 
+
+        if(count < counter_row_min){// || count>=counter_row_max){
+            count++;
+            continue;
+        }
+        if(count>=counter_row_max) {
+            break;
+        }
+
 //        printf("Non è un file\n");   
 
         struct dirent *proc_pid_Dirent;
         DIR *proc_pid;
-     
+
         
         char* pid =procDirent->d_name;
         char* priority;
@@ -158,6 +160,7 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
         if(is_process==1){
             count++;
             print_process_info(process_box, count, pid, user, priority, nice_value, virt, res, share, status, cpu_usage, time, cmdline);
+           // wrefresh(process_box);
 
         }
         free(virt);

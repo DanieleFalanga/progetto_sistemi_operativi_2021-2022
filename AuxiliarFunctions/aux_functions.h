@@ -14,6 +14,7 @@
 #include <sys/stat.h>
 #include <errno.h>
 #include <pthread.h>
+#include <signal.h>
 
 
 #define BUFFER_SIZE 5096

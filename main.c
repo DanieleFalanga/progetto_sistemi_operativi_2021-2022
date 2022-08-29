@@ -8,6 +8,7 @@ static void fine(int sig);
 void print_label_info(WINDOW* label);
 
 
+
 //int boh(int argc, char *argv[]){
 int main(){
 
@@ -60,7 +61,7 @@ int main(){
 
   //creo 3 finestre, 1° finestra è per le info di sistema
   
-  WINDOW* system_box = newwin(10,COLS/2, 1,0);
+  WINDOW* system_box = newwin(10,COLS/2-1, 1,0);
   box(system_box,1,0);                          //Stampa i bordi della finestra
   wrefresh(system_box);                         //Refresh della singola finestra
   
@@ -78,7 +79,6 @@ int main(){
   
   WINDOW* process_box = newwin(0, 0, 12,0);   //primmi due parametri devono essere 0 per 
                                               //non dare numero fisso di righe e colonne
-  
   box(process_box, 0,0);
   wrefresh(process_box);
   scrollok(process_box, TRUE);
@@ -96,19 +96,18 @@ int main(){
 //PROBABILMENTE ACTION_HANDLER È SBAGLIATO, MA ALMENO IL THREAD LO ODVREBBE CREARE
 
   //thread per la gestione delle freccette
-  pthread_t thread1;
-  int ret=pthread_create(&thread1, NULL, &action_handler, process_box);
-  if(ret!=0) printf("errore nel thread1...\n\n");
+  struct args* arguments=(struct args*)malloc(sizeof(struct args));
+  arguments->process_box=process_box;
+  arguments->terminal_box=terminal_box;
 
-  //thread per la gestione del mini terminale
-  //DA AGGIUSTAREB PERCHE STAMPA IN PUNTO SBAGLIATO
-  pthread_t thread2;
-  ret=pthread_create(&thread2, NULL, &terminal_handler, process_box);
-  if(ret!=0) printf("errore nel thread2...\n\n");
+  pthread_t thread1;
+  int ret=pthread_create(&thread1, NULL, &action_handler, (void*)arguments);
+  if(ret!=0) printf("errore nel thread1...\n\n");
 
   //Ciclo infinito del programma
   for(;;){
-      
+      wmove(process_box, 1, 1);
+      echo();
       take_info_system(system_box); //Stampo le info di sistema nel suo box    
 
       take_processes_info(group_buffer, process_box);
@@ -118,14 +117,13 @@ int main(){
       wnoutrefresh(system_box);
       wnoutrefresh(process_box);  
       doupdate();
-
       wrefresh(system_box);
-      wrefresh(process_box);  
+      wrefresh(process_box);
 
-      sleep(2);
+      sleep(4);
   }
   pthread_cancel(thread1);   //fine thread
-  pthread_cancel(thread2);   //fine thread
+//  pthread_cancel(thread2);   //fine thread
   //if(ret) printf("errore nella chiusura del thread\n");
   fine(0);               //Fine del programma 
 }
