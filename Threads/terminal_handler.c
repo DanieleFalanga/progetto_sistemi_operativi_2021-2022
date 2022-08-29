@@ -4,9 +4,10 @@ void* terminal_handler(void* arg){
     WINDOW* terminal_box=(WINDOW*) arg;
     (void) nocbreak();
     keypad(terminal_box, TRUE);
-restart:     wclear(terminal_box);   
+restart:     
+    wclear(terminal_box);   
     wmove(terminal_box, 1, 0);
-    wrefresh(terminal_box);
+ //   wrefresh(terminal_box);
 
  //   waddstr(terminal_box, "\n");
     waddstr(terminal_box, "Digita comando che vuoi eseguire seguito dal pid del processo (oppure exit per uscire):\n\n");
@@ -15,11 +16,12 @@ restart:     wclear(terminal_box);
     echo();
     curs_set(1);
     char* str;
-
-    int c=wgetch(terminal_box);
     int counter=0;
-    while(1){
-        if(c==10){        
+    
+    do{
+        int c=wgetch(terminal_box);
+
+        if(c==10){                      //è il tasto ENTER
             str = (char*)malloc(sizeof(char)*counter);
             int row, cols;
             getyx(terminal_box, row, cols);
@@ -32,9 +34,16 @@ restart:     wclear(terminal_box);
             break;
         }
         counter++;
-        c=wgetch(terminal_box);
+
         wrefresh(terminal_box);
-    }
+    }while(1);
+
+
+ //   int ret=wgetstr(terminal_box, str);
+
+
+
+
     wrefresh(terminal_box);
     waddstr(terminal_box, "sto qui\n");
     wrefresh(terminal_box);
@@ -90,6 +99,7 @@ restart:     wclear(terminal_box);
     
     
 //    waddstr(terminal_box, "sto uscendo\n");
+
     wrefresh(terminal_box);
 
     //curs_set(0);

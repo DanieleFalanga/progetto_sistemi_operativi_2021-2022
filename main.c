@@ -120,7 +120,7 @@ int main(){
       wrefresh(system_box);
       wrefresh(process_box);
 
-      sleep(4);
+      sleep(2);
   }
   pthread_cancel(thread1);   //fine thread
 //  pthread_cancel(thread2);   //fine thread

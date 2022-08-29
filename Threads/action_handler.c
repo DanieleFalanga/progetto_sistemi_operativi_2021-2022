@@ -11,15 +11,16 @@ void* action_handler(void* input){
         command=wgetch(process_box);
         int row, cols;
 
-        switch (command){
-            case KEY_LEFT:
-                wmove(terminal_box, 1, 1);
-                terminal_handler(terminal_box);
+        /*switch (command){
             case KEY_DOWN:
                 wmove(process_box, 1, 1);
                 wclrtoeol(process_box);
                 wrefresh(process_box);
                 counter_row_min++;
+            case KEY_LEFT:
+                wmove(terminal_box, 1, 1);
+                terminal_handler(terminal_box);
+
             case KEY_UP:
                 getmaxyx(process_box, row, cols);
                 row--;
@@ -30,7 +31,32 @@ void* action_handler(void* input){
                 wmove(process_box, 1, 1);
 
 
+        }*/
+
+        
+        if(command==KEY_DOWN){
+            wmove(process_box, 1, 1);
+                wclrtoeol(process_box);
+                wrefresh(process_box);
+                counter_row_min++;
         }
+        else if(command== KEY_UP){
+            getmaxyx(process_box, row, cols);
+                row--;
+                wmove(process_box, row, 1);
+                wclrtoeol(process_box);
+                wrefresh(process_box);
+                counter_row_min--;
+                wmove(process_box, 1, 1);
+
+        }
+        else if(command==KEY_LEFT){
+            wmove(terminal_box, 1, 1);
+            terminal_handler(terminal_box);
+            
+        }
+
+
      /*   
         command = getchar();
         switch(command) {
