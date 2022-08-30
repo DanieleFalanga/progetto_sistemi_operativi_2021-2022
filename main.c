@@ -8,12 +8,12 @@ static void fine(int sig);
 void print_label_info(WINDOW* label);
 
 
+int counter_row_min = 1;
 
 //int boh(int argc, char *argv[]){
 int main(){
 
   // Strutture dati da inizializzare 
-  counter_row_min=12;
 
   char* group_buffer[65534];
   take_group_info(group_buffer);  
@@ -44,8 +44,8 @@ int main(){
     init_pair(1, COLOR_BLACK, COLOR_WHITE); //Colore titolo 
     init_pair(2,COLOR_BLACK, COLOR_GREEN); //Colore Label processi
     init_pair(3, COLOR_WHITE, COLOR_BLACK);
+    bkgd(COLOR_PAIR(3));
   }
-  bkgd(COLOR_PAIR(3));
 
   //stampo il titolo
   
@@ -63,7 +63,6 @@ int main(){
   
   WINDOW* system_box = newwin(10,COLS/2-1, 1,0);
   box(system_box,1,0);                          //Stampa i bordi della finestra
-  wrefresh(system_box);                         //Refresh della singola finestra
   
 
 
@@ -80,16 +79,13 @@ int main(){
   WINDOW* process_box = newwin(0, 0, 12,0);   //primmi due parametri devono essere 0 per 
                                               //non dare numero fisso di righe e colonne
   box(process_box, 0,0);
-  wrefresh(process_box);
   scrollok(process_box, TRUE);
   keypad(process_box, TRUE);  // abilita la mappatura della tastiera  
-  wmove(process_box, 1, 1);
-
 
   //4° finestra è mini-terminal
   WINDOW* terminal_box = newwin(10,COLS/2, 1, COLS/2);
+  keypad(terminal_box, TRUE);
   box(terminal_box,1,0);                          //Stampa i bordi della finestra
-  wrefresh(terminal_box);                         //Refresh della singola finestra
 
 
 //IL THREAD DEVE CHIAMARE ACTION_HANDLER PER GESTIRE LO SCORRIMENTO DELLE RIGHE DEL PROCESS_BOX.
@@ -107,20 +103,15 @@ int main(){
   //Ciclo infinito del programma
   for(;;){
       wmove(process_box, 1, 1);
-      echo();
+      wclear(process_box);
       take_info_system(system_box); //Stampo le info di sistema nel suo box    
-
       take_processes_info(group_buffer, process_box);
-
       //Una volta fatte le stampe ne faccio il refresh
       box(process_box, 0,0); 
       wnoutrefresh(system_box);
       wnoutrefresh(process_box);  
       doupdate();
-      wrefresh(system_box);
-      wrefresh(process_box);
-
-      sleep(2);
+      sleep(1);
   }
   pthread_cancel(thread1);   //fine thread
 //  pthread_cancel(thread2);   //fine thread

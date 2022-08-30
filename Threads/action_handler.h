@@ -5,4 +5,7 @@ struct args{
   WINDOW* process_box;
   WINDOW* terminal_box;
 };
+
+extern int counter_row_min;
+
 void* action_handler(void* input);

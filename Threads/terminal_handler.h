@@ -6,4 +6,6 @@
 #define SUSPEND "suspend"
 #define EXIT "exit"
 
+extern int counter_row_min;
+
 void* terminal_handler(void* arg);

@@ -2,22 +2,25 @@
 
 void* terminal_handler(void* arg){
     WINDOW* terminal_box=(WINDOW*) arg;
-    (void) nocbreak();
-    keypad(terminal_box, TRUE);
-restart:     
-    wclear(terminal_box);   
-    wmove(terminal_box, 1, 0);
- //   wrefresh(terminal_box);
 
- //   waddstr(terminal_box, "\n");
-    waddstr(terminal_box, "Digita comando che vuoi eseguire seguito dal pid del processo (oppure exit per uscire):\n\n");
-    //box(terminal_box, 0,0);
-    wrefresh(terminal_box);
-    echo();
-    curs_set(1);
-    char* str;
-    int counter=0;
+restart:     
     
+    wclear(terminal_box);   
+    
+    wmove(terminal_box, 1, 0);
+ 
+    waddstr(terminal_box, "Digita comando che vuoi eseguire seguito dal pid del processo (oppure exit per uscire):\n\n");
+    
+    wrefresh(terminal_box);
+    
+    echo();
+    
+    curs_set(1);
+    
+    char str[80];
+    
+    int counter=0;
+    /*
     do{
         int c=wgetch(terminal_box);
 
@@ -37,15 +40,12 @@ restart:
 
         wrefresh(terminal_box);
     }while(1);
+    */
 
-
- //   int ret=wgetstr(terminal_box, str);
-
-
-
+    int ret=wgetstr(terminal_box, str);
 
     wrefresh(terminal_box);
-    waddstr(terminal_box, "sto qui\n");
+    
     wrefresh(terminal_box);
     noecho();
   //  waddstr(terminal_box, str);

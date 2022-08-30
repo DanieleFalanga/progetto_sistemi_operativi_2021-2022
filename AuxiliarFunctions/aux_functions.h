@@ -21,7 +21,7 @@
 #define NUM_OF_CORES (take_num_of_cores())
 #define UPTIME (take_uptime("/proc/uptime"))
 
-int counter_row_min;
+//int counter_row_min;
 
 
 
