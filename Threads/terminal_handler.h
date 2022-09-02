@@ -5,6 +5,7 @@
 #define KILL "kill"
 #define SUSPEND "suspend"
 #define EXIT "exit"
+#define SHUTDOWN "shutdown"
 
 extern int counter_row_min;
 

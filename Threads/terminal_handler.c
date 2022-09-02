@@ -81,12 +81,21 @@ restart:
         int ret= kill(pid, SIGSTOP);
         if(ret==-1) 
             waddstr(terminal_box, "signal send... error\n");
-            wrefresh(terminal_box);
+        wrefresh(terminal_box);
 
     }
     else if(strcmp(EXIT, command)==0){
         waddstr(terminal_box, "Uscita dal terminale\n");
         wrefresh(terminal_box);
+    }
+    else if(strcmp(SHUTDOWN, command)==0){
+        waddstr(terminal_box, "Chiusura del programma in corso...\n");
+        wrefresh(terminal_box);
+        int ret=kill(getpid(), SIGINT);
+        if(ret==-1) 
+            waddstr(terminal_box, "signal send... error\n");
+        wrefresh(terminal_box);
+
     }
     else{
         waddstr(terminal_box, "Comando non supportato. Attendere un momento...");
