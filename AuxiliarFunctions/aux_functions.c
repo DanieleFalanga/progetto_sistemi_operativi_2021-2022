@@ -31,7 +31,6 @@ void strtok_aux(char* path, char* delimiter, char** str_buffer){
         printf("%d\n", errno);
         return;
     
-    //ritorno il buffer
     return;
 }
 
@@ -171,3 +170,33 @@ int is_regular_file(const char *path)
     return S_ISREG(path_stat.st_mode);
 }
 
+//Funzione di stampa per la label dei processi
+
+//Daniele inizializzazione, Flavio aggiustamento delle posizioni di stampa
+
+void print_label_info(WINDOW* label){
+  mvwprintw(label, 0, PID_COLUMN, "PID");     //stampa la stringa alle coordinate che gli vengono passate
+  mvwprintw(label, 0, USER_COLUMN, "USER");
+  mvwprintw(label, 0, PRI_COLUMN, "PRI");
+  mvwprintw(label, 0, NI_COLUMN, "NI");
+  mvwprintw(label, 0, VIRT_COLUMN, "VIRT");
+  mvwprintw(label, 0, RES_COLUMN, "RES");
+  mvwprintw(label, 0, SHR_COLUMN, "SHR");
+  mvwprintw(label, 0, S_COLUMN, "S");
+  mvwprintw(label, 0, CPU_COLUMN, "CPU%");
+  mvwprintw(label, 0, TIME_COLUMN, "TIME");
+  mvwprintw(label, 0, CMD_COLUMN, "CMD");
+}
+
+//Daniele
+void sig_handler(int sig){
+    endwin();
+    if(sig == SIGBUS){
+      printf("programm terminated with SIGBUS: %d\n", errno);
+    }
+    if(sig == SIGSEGV){
+      printf("programm terminated with SIGSEGV: %d\n", errno);
+    }
+    
+    exit(0);
+}

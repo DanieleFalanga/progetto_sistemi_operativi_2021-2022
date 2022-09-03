@@ -1,26 +1,16 @@
 #include "proc_function.h"
 
+//Daniele
 char* take_priority(char** buffer){
     return buffer[17];
 }
 
+//Daniele
 char* take_nice_value(char** buffer){
     return buffer[18];
 }
 
-/*char* take_virt(char** buffer){
-    //TODO: da trasfirmare in kB, MB,...
-    char str[20];
-    float num = atof(buffer[22]);
-    if(num < 1000000){
-        sprintf(str, "%f", num);
-        return str;
-    }
-    num /= (1024*1024);
-    sprintf(str, "%.2fM", num);
-    return str;
-}
-*/
+//Daniele
 void take_virt(char** buffer, char* str){
     //TODO: da trasfirmare in kB, MB,...
     float num = atof(buffer[22]);
@@ -31,61 +21,32 @@ void take_virt(char** buffer, char* str){
     sprintf(str, "%.2fM", num);
 }
 
-
-
+//Daniele
 char* take_status(char** buffer){
     return buffer[2];
 }
 
-/*char* take_time(char** buffer){
-    int utime = atoi(buffer[13]);
-    int stime = atoi(buffer[14]);
-    int time = utime + stime;
-    //char str[(int)((ceil(log10(time))+1)*sizeof(char))];
-    char str[50];
-    sprintf(str, "%d", time);
-
-    return str;
-}
-
-char* take_res(char** buffer){
-    int res = atoi(buffer[1])*4;
-    //char str[(int)((ceil(log10(res))+1)*sizeof(char))];
-    char str[50];
-    sprintf(str, "%d", res);
-    return str;
-}
-
-char* take_share(char** buffer){
-    int share = atoi(buffer[2])*4;
-    //char str[(int)((ceil(log10(share))+1)*sizeof(char))];
-    char str[50];
-    sprintf(str, "%d", share);
-    return str;
-}
-*/
+//Daniele
 void take_time(char** buffer, char* str){
     float utime = atof(buffer[13]);
     float stime = atof(buffer[14]);
     float time = utime + stime;
-    //char str[(int)((ceil(log10(time))+1)*sizeof(char))];
     sprintf(str, "%.3f", time);
 }
+
+//Daniele
 void take_res(char** buffer, char* str){
     int res = atoi(buffer[1])*4;
-    //char str[(int)((ceil(log10(res))+1)*sizeof(char))];
     sprintf(str, "%d", res);
 }
+
+//Daniele
 void take_share(char** buffer, char* str){
     int share = atoi(buffer[2])*4;
-    //char str[(int)((ceil(log10(share))+1)*sizeof(char))];
     sprintf(str, "%d", share);
 }
 
-
-
-
-
+//Daniele
 void take_cmdline(char* path, char* string){
     FILE* fptr = fopen(path, "r");
     
@@ -97,6 +58,7 @@ void take_cmdline(char* path, char* string){
     return;
 }
 
+//Daniele
 int search_group_id(char* path){
     FILE* fptr = fopen(path, "r");
 
@@ -131,31 +93,12 @@ int search_group_id(char* path){
         fprintf(stderr,"Impossibile chiudere file (sg) %s\n", path);
         return 1;
     }
-    //printf("%d\n", group_id)    
     return group_id;
 }
 
 
-/*
+
 //Flavio
-char* take_cpu_usage_process(char** buffer_stat){
-    double utime=atof(buffer_stat[13])/sysconf(_SC_CLK_TCK);
-    double stime=atof(buffer_stat[14])/sysconf(_SC_CLK_TCK);
-    //printf("%f\n", stime);
-
-    double starttime=atof(buffer_stat[21])/sysconf(_SC_CLK_TCK);
-    double cpu_usage= (utime+stime)*100/(UPTIME-starttime);
-    
-    //TODO: approssima a due/tre cifre
-
-    //char str[(int)((ceil(log10(cpu_usage))+1)*sizeof(char))];
-    char str[50];
-    sprintf(str, "%lf", cpu_usage);
-    return str;
-
-
-}
-*/
 void take_cpu_usage_process(char** buffer_stat, char* str){
     double utime=atof(buffer_stat[13])/sysconf(_SC_CLK_TCK);
     double stime=atof(buffer_stat[14])/sysconf(_SC_CLK_TCK);
@@ -166,7 +109,6 @@ void take_cpu_usage_process(char** buffer_stat, char* str){
     
     //TODO: approssima a due/tre cifre
 
-    //char str[(int)((ceil(log10(cpu_usage))+1)*sizeof(char))];
     sprintf(str, "%.2lf", cpu_usage);
 }
 
@@ -174,8 +116,9 @@ void take_cpu_usage_process(char** buffer_stat, char* str){
 
 
 /////////////////////////////////////////////
+//Flavio
 int is_a_process(char** buffer){
-//    printf("pid: %s\tgpid: %s\n\n", buffer[7], buffer[11]);
+    
     return strcmp(buffer[7],buffer[11]);
 }
 

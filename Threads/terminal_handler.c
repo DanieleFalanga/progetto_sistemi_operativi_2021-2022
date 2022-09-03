@@ -1,5 +1,7 @@
 #include "terminal_handler.h"
 
+
+//Flavio tutto, Daniele fix a riga 27 
 void* terminal_handler(void* arg){
     WINDOW* terminal_box=(WINDOW*) arg;
 
@@ -20,27 +22,7 @@ restart:
     char str[80];
     
     int counter=0;
-    /*
-    do{
-        int c=wgetch(terminal_box);
-
-        if(c==10){                      //è il tasto ENTER
-            str = (char*)malloc(sizeof(char)*counter);
-            int row, cols;
-            getyx(terminal_box, row, cols);
-            wmove(terminal_box, row-1, 0);
-            int num=winnstr(terminal_box, str, counter);
-            waddstr(terminal_box, "\n");
-            wrefresh(terminal_box);
-
-            //sleep(5);
-            break;
-        }
-        counter++;
-
-        wrefresh(terminal_box);
-    }while(1);
-    */
+    
 
     int ret=wgetstr(terminal_box, str);
 

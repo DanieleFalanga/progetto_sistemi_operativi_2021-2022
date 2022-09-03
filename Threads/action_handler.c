@@ -1,5 +1,7 @@
 #include "action_handler.h"
 
+
+//Flavio
 void* action_handler(void* input){
     WINDOW* process_box=((struct args*)input)->process_box;
     WINDOW* terminal_box=((struct args*)input)->terminal_box;

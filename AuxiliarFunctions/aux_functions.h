@@ -31,7 +31,6 @@
 #define CPU_COLUMN 75
 #define TIME_COLUMN 82
 #define CMD_COLUMN 95
-//int counter_row_min;
 
 
 
@@ -41,4 +40,5 @@ void search_all_occurrences(char* path, char* delimiter, char* expression, int* 
 double take_uptime(char* path);
 void take_group_info(char** group_buffer);
 int is_regular_file(const char *path); 
-static void fine(int sig); 
+void print_label_info(WINDOW* label);
+void sig_handler(int sig);
