@@ -20,7 +20,17 @@
 #define BUFFER_SIZE 5096
 #define NUM_OF_CORES (take_num_of_cores())
 #define UPTIME (take_uptime("/proc/uptime"))
-
+#define PID_COLUMN 3    
+#define USER_COLUMN 10 
+#define PRI_COLUMN 30 
+#define NI_COLUMN 35 
+#define VIRT_COLUMN 40
+#define RES_COLUMN 50
+#define SHR_COLUMN 60
+#define S_COLUMN 70
+#define CPU_COLUMN 75
+#define TIME_COLUMN 82
+#define CMD_COLUMN 95
 //int counter_row_min;
 
 

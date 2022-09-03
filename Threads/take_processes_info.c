@@ -13,7 +13,7 @@ void print_process_info(WINDOW* process_box, int count, char* pid, char* user, c
     mvwprintw(process_box, count-counter_row_min, S_COLUMN, status);
     mvwprintw(process_box, count-counter_row_min, CPU_COLUMN, cpu_usage);
     mvwprintw(process_box, count-counter_row_min, TIME_COLUMN, time);
-    mvwprintw(process_box, count-counter_row_min, CMD_COLUMN, "");
+    mvwprintw(process_box, count-counter_row_min, CMD_COLUMN, cmdline);
 }
 
 
@@ -69,7 +69,8 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
         struct dirent *proc_pid_Dirent;
         DIR *proc_pid;
 
-        
+        size_t str_cmd_size;
+        size_t buffer_size = BUFFER_SIZE;
         char* pid =procDirent->d_name;
         char* priority;
         char* nice_value; 
@@ -80,7 +81,7 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
         char* res = (char*)malloc(sizeof(char)*1000);    //char res[10]="";
         char* share = (char*)malloc(sizeof(char)*1000);    //char share[10]="";
         char* user;
-        char* cmdline = "";
+        char* cmdline; 
         char* buffer_statm[BUFFER_SIZE];
         char* buffer_stat[BUFFER_SIZE];   
 
@@ -140,14 +141,18 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
                 else{
                     break;
                 }
-            }/*
+            }
             else if(strcmp("cmdline", proc_pid_Dirent->d_name) == 0){
                 strcat(path, directory);
                 strcat(path, "/");
                 strcat(path, proc_pid_Dirent->d_name);
 
-                cmdline = take_cmdline(path);
-            }*/
+
+                cmdline = malloc(buffer_size * sizeof(char));
+                FILE* fptr = fopen(path, "r");
+                str_cmd_size = getline(&cmdline, &buffer_size, fptr);
+                fclose(fptr);
+            }
          
         }
 
@@ -157,7 +162,7 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
   e stampiamo solo le righe che entrano a schermo. Teniamo un contatore che tiene conto della prima riga non letta. Se si preme la freccia in giù una 
   volta, andiamo a cancellare la prima riga con clrtoeol (o una di quelle), e ristampiamo le righe scalandole tutte di una.
 */
-        if(is_process==1){
+        if(is_process==1 && strlen(cmdline) < COLS){
             count++;
             print_process_info(process_box, count, pid, user, priority, nice_value, virt, res, share, status, cpu_usage, time, cmdline);
            // wrefresh(process_box);
@@ -168,7 +173,9 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
         free(res);
         free(cpu_usage);
         free(time);
+        free(cmdline);
         closedir(proc_pid);
+
     }
     // Close directory and exit.
     closedir (proc);

@@ -6,12 +6,12 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Aug 25 16:27:52 2022
+# Make data base, printed on Sat Sep  3 09:24:44 2022
 
 # Variables
 
 # makefile (from 'Makefile', line 4)
-OBJ = main.o AuxiliarFunctions/aux_functions.o ProcessesInformation/proc_function.o SystemInformation/system_function.o Threads/take_system_info.o Threads/take_processes_info.o
+OBJ = main.o Threads/terminal_handler.o Threads/action_handler.o AuxiliarFunctions/aux_functions.o ProcessesInformation/proc_function.o SystemInformation/system_function.o Threads/take_system_info.o Threads/take_processes_info.o
 # environment
 GDK_BACKEND = x11
 # environment
@@ -61,7 +61,7 @@ MAKEFLAGS = pqrR
 # makefile
 CURDIR := /home/dans/Documents/university/progetto_sistemi_operativi_2021-2022
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -79,13 +79,13 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 8493
+VSCODE_PID = 1750
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/Dans-PC:@/tmp/.ICE-unix/1208,unix/Dans-PC:/tmp/.ICE-unix/1208
+SESSION_MANAGER = local/Dans-PC:@/tmp/.ICE-unix/1204,unix/Dans-PC:/tmp/.ICE-unix/1204
 # automatic
 *F = $(notdir $*)
 # environment
@@ -119,7 +119,7 @@ MOTD_SHOWN = pam
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = 580135b4729a4821a68a4801654bf765
+INVOCATION_ID = 2773a5ab7c694c9eb7ca0d5ece5f8254
 # environment
 USERNAME = dans
 # automatic
@@ -141,7 +141,7 @@ GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/visual-studio-code.desktop
 # makefile
 .DEFAULT_GOAL := similtop
 # environment
-SYSTEMD_EXEC_PID = 1223
+SYSTEMD_EXEC_PID = 1219
 # environment
 DISPLAY = :1
 # environment
@@ -149,11 +149,11 @@ USER = dans
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 1101
+MANAGERPID = 1097
 # environment
 DEBUGINFOD_URLS = https://debuginfod.archlinux.org 
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 8475
+GIO_LAUNCHED_DESKTOP_FILE_PID = 1732
 # environment
 _ = /usr/bin/make
 # environment
@@ -161,7 +161,7 @@ XDG_RUNTIME_DIR = /run/user/1000
 # makefile (from 'Makefile', line 2)
 CFLAGS = -I.
 # environment
-JOURNAL_STREAM = 8:26136
+JOURNAL_STREAM = 8:27681
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -177,7 +177,7 @@ VSCODE_IPC_HOOK = /run/user/1000/vscode-f69fbb0b-1.70.1-main.sock
 # automatic
 <F = $(notdir $<)
 # makefile (from 'Makefile', line 3)
-DEPS = AuxiliarFunctions/aux_functions.h ProcessesInformation/proc_function.h SystemInformation/system_function.h Threads/take_system_info.h Threads/take_processes_info.h
+DEPS = Threads/terminal_handler.h Threads/action_handler.h AuxiliarFunctions/aux_functions.h ProcessesInformation/proc_function.h SystemInformation/system_function.h Threads/take_system_info.h Threads/take_processes_info.h
 # default
 SUFFIXES := 
 # environment
@@ -201,15 +201,15 @@ GDMSESSION = gnome
 
 # Directories
 
-# . (device 40, inode 513863): 13 files, no impossibilities.
+# . (device 39, inode 513863): 14 files, no impossibilities.
 
-# 13 files, no impossibilities in 1 directories.
+# 14 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
-%.o: %.c AuxiliarFunctions/aux_functions.h ProcessesInformation/proc_function.h SystemInformation/system_function.h Threads/take_system_info.h Threads/take_processes_info.h
+%.o: %.c Threads/terminal_handler.h Threads/action_handler.h AuxiliarFunctions/aux_functions.h ProcessesInformation/proc_function.h SystemInformation/system_function.h Threads/take_system_info.h Threads/take_processes_info.h
 #  recipe to execute (from 'Makefile', line 8):
-	$(CC) -lm -lncurses -g -c -o $@ $< $(CFLAGS) 
+	$(CC) -lm -pthread -g -c -o $@ $< $(CFLAGS) -lncurses 
 
 # 1 implicit rules, 0 (0.0%) terminal.
 # Files
@@ -223,7 +223,7 @@ Threads/take_processes_info.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-24 16:43:53.242600022
+#  Last modified 2022-09-02 18:51:08.799300116
 #  File has been updated.
 #  Successfully updated.
 
@@ -252,24 +252,33 @@ Threads/take_system_info.o:
 #  File has not been updated.
 
 # Not a target:
+Threads/terminal_handler.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 all:
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has not been updated.
 
-similtop: main.o AuxiliarFunctions/aux_functions.o ProcessesInformation/proc_function.o SystemInformation/system_function.o Threads/take_system_info.o Threads/take_processes_info.o
+similtop: main.o Threads/terminal_handler.o Threads/action_handler.o AuxiliarFunctions/aux_functions.o ProcessesInformation/proc_function.o SystemInformation/system_function.o Threads/take_system_info.o Threads/take_processes_info.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 11):
-	$(CC) -lm -lncurses -g -o $@ $^ $(CFLAGS) 
+	$(CC) -lm -pthread -g -o $@ $^ $(CFLAGS) -lncurses
 
 # Not a target:
 main.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+ 
+make: *** No rule to make target 'all'.  Stop.
+
 
 # Not a target:
 SystemInformation/system_function.o:
@@ -277,22 +286,26 @@ SystemInformation/system_function.o:
 #  Modification time never checked.
 #  File has not been updated.
 
+# Not a target:
+Threads/action_handler.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 # files hash-table stats:
-# Load=11/1024=1%, Rehash=0, Collisions=0/27=0%
+# Load=13/1024=1%, Rehash=0, Collisions=0/31=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 30 / storage = 515 B / avg = 17 B
-# current buf: size = 8162 B / used = 515 B / count = 30 / avg = 17 B
+# strcache buffers: 1 (0) / strings = 35 / storage = 635 B / avg = 18 B
+# current buf: size = 8162 B / used = 635 B / count = 35 / avg = 18 B
 
-# strcache performance: lookups = 37 / hit rate = 18%
+# strcache performance: lookups = 42 / hit rate = 16%
 # hash-table stats:
-# Load=30/8192=0%, Rehash=0, Collisions=0/37=0%
-# Finished Make data base on Thu Aug 25 16:27:52 2022
+# Load=35/8192=0%, Rehash=0, Collisions=0/42=0%
+# Finished Make data base on Sat Sep  3 09:24:44 2022
 
  
-make: *** No rule to make target 'all'.  Stop.
-

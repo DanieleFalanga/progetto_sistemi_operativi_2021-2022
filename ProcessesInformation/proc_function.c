@@ -86,18 +86,15 @@ void take_share(char** buffer, char* str){
 
 
 
-char* take_cmdline(char* path){
+void take_cmdline(char* path, char* string){
     FILE* fptr = fopen(path, "r");
-    char** buffer;
     
-    //fgets(string, BUFFER_SIZE, fptr);
-    size_t* size = malloc(sizeof(size_t)*BUFFER_SIZE);
-    getline(buffer, size, fptr);
+    size_t size = BUFFER_SIZE;
+    getline(&string, &size, fptr);
 
     if(fclose(fptr)!=0)
         fprintf(stderr,"Impossibile chiudere file (cmd), %s\n", path);
-  //  return string;
-    return buffer[0];
+    return;
 }
 
 int search_group_id(char* path){
