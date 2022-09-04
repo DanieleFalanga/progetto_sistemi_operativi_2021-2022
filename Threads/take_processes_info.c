@@ -1,7 +1,6 @@
 #include "take_processes_info.h"
 #include <limits.h>
 
-
 void print_process_info(WINDOW* process_box, int count, char* pid, char* user, char* priority, char* nice_value, char* virt, char* res, char* share, char* status, char* cpu_usage, char* time, char* cmdline){
     mvwprintw(process_box, count-counter_row_min, PID_COLUMN, pid);
     mvwprintw(process_box, count-counter_row_min, USER_COLUMN, user);
@@ -16,7 +15,7 @@ void print_process_info(WINDOW* process_box, int count, char* pid, char* user, c
     mvwprintw(process_box, count-counter_row_min, CMD_COLUMN, cmdline);
 }
 
-
+//Daniele e Flavio
 void take_processes_info(char** group_buffer, WINDOW* process_box){
     int ret;
     struct dirent *procDirent;

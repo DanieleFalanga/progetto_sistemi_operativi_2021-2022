@@ -1,5 +1,6 @@
 #include "take_system_info.h"
 
+//Flavio
 void print_system_info(WINDOW* system_box, float* percentages, float mem_info, char* num_blocked_processes, char* num_running_processes){
     for(int i=0; i<NUM_OF_CORES; i++){
         if(i%4==0)
@@ -17,7 +18,7 @@ void print_system_info(WINDOW* system_box, float* percentages, float mem_info, c
 }
 
 
-
+//Flavio e Daniele
 void take_info_system(WINDOW* system_box){
     //Buffers
     float percentages[NUM_OF_CORES];
