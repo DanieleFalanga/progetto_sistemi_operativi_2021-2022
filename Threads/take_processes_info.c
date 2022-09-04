@@ -75,7 +75,7 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
         char* priority;
         char* nice_value; 
         char* virt = (char*)malloc(sizeof(char)*1000);    //char virt[10]="";
-        char* status;
+        char* status = (char*)malloc(sizeof(char));
         char* time = (char*)malloc(sizeof(char)*1000);    //char time[10]="";
         char* cpu_usage = (char*)malloc(sizeof(char)*1000);    //char cpu_usage[10]="";
         char* res = (char*)malloc(sizeof(char)*1000);    //char res[10]="";
@@ -108,7 +108,6 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
                 priority = take_priority(buffer_stat);
                 nice_value = take_nice_value(buffer_stat);
                 take_virt(buffer_stat, virt);
-                status = take_status(buffer_stat);
                 take_time(buffer_stat, time);
                 take_cpu_usage_process(buffer_stat, cpu_usage);
             }
@@ -134,6 +133,8 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
                 strtok_aux(path, "\t", buffer_status);
                 
                 if(is_a_process(buffer_status)==0) {
+                    take_status(buffer_status[5], status);
+
                     is_process=1;
                     int group_id = atoi(buffer_status[18]);
                     user = group_buffer[group_id];
@@ -169,6 +170,7 @@ void take_processes_info(char** group_buffer, WINDOW* process_box){
 
         }
         free(virt);
+        free(status);
         free(share);
         free(res);
         free(cpu_usage);

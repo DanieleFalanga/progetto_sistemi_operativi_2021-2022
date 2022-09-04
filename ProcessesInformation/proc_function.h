@@ -10,7 +10,7 @@ char* take_res(char** buffer);
 char* take_share(char** buffer);*/
 void take_cmdline(char* path, char* string);
 //char* take_cpu_usage_process(char** buffer_stat);
-char* take_status(char** buffer);
+void take_status(char* buffer, char* status);
 int search_group_id(char* path);
 int is_a_process(char** buffer);
 void take_virt(char** buffer, char* str);

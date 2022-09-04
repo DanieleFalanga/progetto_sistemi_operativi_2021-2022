@@ -22,8 +22,9 @@ void take_virt(char** buffer, char* str){
 }
 
 //Daniele
-char* take_status(char** buffer){
-    return buffer[2];
+void take_status(char* buffer, char* status){
+    //status=strtok(buffer, " ");
+    sprintf(status, "%s", strtok(buffer, " "));    
 }
 
 //Daniele
