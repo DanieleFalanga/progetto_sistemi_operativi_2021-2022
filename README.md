@@ -24,7 +24,7 @@ All'interno del terminale è possibile eseguire i comandi semplicimente digitand
 
 - **shutdown** : chiudo il programma
 - **exit**: esce dal terminale permettendo di scendere nuovamente tra i processi tramite le frecce o il mouse
-- **kill**: [pid] : lancia il segnale "SIGTERM" sul processo desiderato
-- **suspend**: [pid] : lancia il segnale "SIGSTOP" sul processo desiderato 
-- **resume**: [pid] : lancia il segnale "SIGCONT" sul processo desiderato
-- **quit**: [pid] : lancia il segnale "SIGQUIT" sul processo desiderato
+- **kill** [pid] : lancia il segnale "SIGTERM" sul processo desiderato
+- **suspend** [pid] : lancia il segnale "SIGSTOP" sul processo desiderato 
+- **resume** [pid] : lancia il segnale "SIGCONT" sul processo desiderato
+- **quit** [pid] : lancia il segnale "SIGQUIT" sul processo desiderato
