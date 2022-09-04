@@ -52,7 +52,7 @@ restart:
     }
     else if(strcmp(KILL, command)==0){
         pid_t pid = atoi(strtok(NULL, " "));
-       int ret=kill(pid, SIGKILL);
+       int ret=kill(pid, SIGTERM);
        if(ret==-1) 
             waddstr(terminal_box, "signal send... error\n");
             wrefresh(terminal_box);

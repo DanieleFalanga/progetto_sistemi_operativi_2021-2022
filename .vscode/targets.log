@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Sep  4 16:43:26 2022
+# Make data base, printed on Sun Sep  4 16:58:08 2022
 
 # Variables
 
@@ -81,7 +81,7 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 5020
+VSCODE_PID = 5745
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -155,7 +155,7 @@ MANAGERPID = 1080
 # environment
 DEBUGINFOD_URLS = https://debuginfod.archlinux.org 
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 5003
+GIO_LAUNCHED_DESKTOP_FILE_PID = 5728
 # environment
 _ = /usr/bin/make
 # environment
@@ -203,9 +203,9 @@ GDMSESSION = gnome
 
 # Directories
 
-# . (device 39, inode 706609): 13 files, no impossibilities.
+# . (device 39, inode 706609): 14 files, no impossibilities.
 
-# 13 files, no impossibilities in 1 directories.
+# 14 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -278,6 +278,7 @@ main.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+ 
 
 # Not a target:
 SystemInformation/system_function.o:
@@ -299,12 +300,12 @@ Threads/action_handler.o:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 34 / storage = 619 B / avg = 18 B
-# current buf: size = 8162 B / used = 619 B / count = 34 / avg = 18 B
+# strcache buffers: 1 (0) / strings = 35 / storage = 626 B / avg = 17 B
+# current buf: size = 8162 B / used = 626 B / count = 35 / avg = 17 B
 
-# strcache performance: lookups = 41 / hit rate = 17%
+# strcache performance: lookups = 42 / hit rate = 16%
 # hash-table stats:
-# Load=34/8192=0%, Rehash=0, Collisions=0/41=0%
-# Finished Make data base on Sun Sep  4 16:43:26 2022
+# Load=35/8192=0%, Rehash=0, Collisions=0/42=0%
+# Finished Make data base on Sun Sep  4 16:58:08 2022
 
  
