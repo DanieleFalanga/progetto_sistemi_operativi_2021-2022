@@ -18,7 +18,6 @@
 
 
 #define BUFFER_SIZE 5096
-#define NUM_OF_CORES (take_num_of_cores())
 #define UPTIME (take_uptime("/proc/uptime"))
 #define PID_COLUMN 3    
 #define USER_COLUMN 10 
@@ -32,7 +31,7 @@
 #define TIME_COLUMN 82
 #define CMD_COLUMN 95
 
-
+extern int NUM_OF_CORES;
 
 void strtok_aux(char* path, char* delimiter, char** str_buffer);
 int search_first_occurrence(char* path, char* delimiter, char* expression);

@@ -1,5 +1,8 @@
 #include "AuxiliarFunctions/aux_functions.h"
 
+extern int NUM_OF_CORES;
+
+
 float take_mem_info(char** buffer);
 int take_num_of_cores();
 char* take_num_running_processes();     //return a string (not a number)

@@ -21,6 +21,7 @@ void strtok_aux(char* path, char* delimiter, char** str_buffer){
             int len = strlen(token);
             str_buffer[count] = malloc(sizeof(char*) * len + 1);
             strcpy(str_buffer[count], token);
+            //free(str_buffer);
             count++;
             token = strtok(NULL, delimiter);
         }

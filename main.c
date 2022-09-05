@@ -4,12 +4,13 @@
 #include "Threads/terminal_handler.h"
 
 int counter_row_min = 1;
+int NUM_OF_CORES;
 
 //Daniele buonissima parte, Flavio fix sparsi
 int main(int argc, char *argv[]){
 
   // Strutture dati da inizializzare 
-
+  NUM_OF_CORES = take_num_of_cores();
   char* group_buffer[65534];
   take_group_info(group_buffer);  
   char* titolo = "SimilTop di Flavio Volpi e Daniele Falanga";

@@ -1,5 +1,6 @@
 #include "AuxiliarFunctions/aux_functions.h"
 
+extern int NUM_OF_CORES;
 
 
 char* take_priority(char** buffer);
